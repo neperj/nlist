@@ -14,96 +14,98 @@
 //}, 2000);
 
 
+function router() {
+  const pages = ['home', 'listing', 'profile', 'details'];
+  const hash = window.location.hash.substring(1) || 'home';
+  
+  pages.forEach(page => {
+    document.getElementById(page).style.display = 
+      page === hash ? 'block' : 'none';
+  });
 
+  if (hash === 'listing') {
+    // Trigger data fetching for listing page
+    fetchListingData();
+  }
+}
 
+// Initial page load and hash change listener
+window.addEventListener('hashchange', router);
+window.addEventListener('load', router);
 
 const relay = await window.NostrTools.Relay.connect('wss://nos.lol')
 console.log(`connected to ${relay.url}`)
 
-let eventCount = 0;
-const maxEvents = 10; // Set the maximum number of events to receive
-const eventContainer = document.getElementById('event-container');
+// Data fetching function
+function fetchListingData() {
+    
+  let eventCount = 0;
+  const maxEvents = 30;
+  const eventContainer = document.getElementById('event-container');
+  // should be based on hash in the URL, to get a specific list
+  relay.subscribe([
+    {
+      kinds: [30402],
+    },
+  ], {
+    onevent(event) {
+      console.log('got event:', event);
+      renderItem(event);
+      eventCount++;
+      if (eventCount >= maxEvents) {
+        relay.close();
+      }
+    }
+  });
 
-relay.subscribe([
-  {
-    kinds: [1],
-  },
-], {
-  onevent(event) {
-    console.log('got event:', event);
+  function renderItem(event) {
+    const itemDiv = document.createElement('div');
+    itemDiv.className = 'item-card';
 
-    // Create a new event container element
-    const eventElement = document.createElement('div');
-    eventElement.classList.add('event');
+    const getTagValue = (tagName) => {
+      const tag = event.tags.find(tag => tag[0] === tagName);
+      return tag ? tag[1] : null;
+    };
 
-    // Create the content element
-    const contentElement = document.createElement('div');
-    contentElement.classList.add('content');
+    // Get all images
+    const images = event.tags.filter(tag => tag[0] === 'image').map(tag => tag[1]);
 
-    // Find and make all links clickable
-    const linkRegex = /https?:\/\/\S+/g;
-    const finalContent = event.content.replace(linkRegex, (match) => {
-      const linkElement = document.createElement('a');
-      linkElement.href = match;
-      linkElement.target = '_blank';
-      linkElement.textContent = match;
-      return linkElement.outerHTML;
+    const itemHTML = `
+      <h2>${getTagValue('title')}</h2>
+      ${images.length > 0 ? `
+        <div class="image-gallery">
+          ${images.map(img => `
+            <div class="image-thumbnail">
+              <img src="${img}" alt="${getTagValue('title')}">
+            </div>
+          `).join('')}
+        </div>
+      ` : ''}
+      <p class="summary">${getTagValue('summary')}</p>
+      <div class="item-details">
+        <p class="price">Price: ${getTagValue('price')} ${event.tags.find(tag => tag[0] === 'price')?.[2] || 'idk'}</p>
+        <p class="location">Location: ${getTagValue('location')}</p>
+        <p class="shipping">Shipping: ${event.tags.find(tag => tag[0] === 'shipping')?.[1] || 'N/A'}</p>
+        <p class="status">Status: ${getTagValue('status')}</p>
+        <p class="published">Published: ${new Date(parseInt(getTagValue('published_at')) * 1000).toLocaleDateString()}</p>
+      </div>
+    `;
+
+    itemDiv.innerHTML = itemHTML;
+    eventContainer.appendChild(itemDiv);
+  }
+}
+
+    // Start browsing button
+    document.getElementById('show-list').addEventListener('click', () => {
+      window.location.hash = 'listing';
     });
 
-contentElement.innerHTML = finalContent.replace(/\n/g, '<br>');
 
-    // Create the metadata element
-    const metadataElement = document.createElement('div');
-    metadataElement.classList.add('metadata');
 
-    // Add the created_at timestamp
-    const createdAtElement = document.createElement('span');
-    createdAtElement.classList.add('created-at');
-    createdAtElement.textContent = new Date(event.created_at * 1000).toLocaleString();
-    metadataElement.appendChild(createdAtElement);
+    document.getElementById('nav-home').addEventListener('click', () => {
+      window.location.hash = 'home';
+    });
 
-    // Add the pubkey
-    const pubkeyElement = document.createElement('span');
-    pubkeyElement.classList.add('pubkey');
-    pubkeyElement.textContent = `Pubkey: ${event.pubkey}`;
-    metadataElement.appendChild(pubkeyElement);
 
-    // Add the id
-    const idElement = document.createElement('span');
-    idElement.classList.add('id');
-    idElement.textContent = `ID: ${event.id}`;
-    metadataElement.appendChild(idElement);
 
-    // Add the kind
-    const kindElement = document.createElement('span');
-    kindElement.classList.add('kind');
-    kindElement.textContent = `Kind: ${event.kind}`;
-    metadataElement.appendChild(kindElement);
-
-    // Add the tags
-    if (event.tags.length > 0) {
-      const tagsElement = document.createElement('div');
-      tagsElement.classList.add('tags');
-      tagsElement.textContent = `Tags: ${event.tags.map(tag => tag.join(':')).join(', ')}`;
-      metadataElement.appendChild(tagsElement);
-    }
-
-    // Add the signature
-    const sigElement = document.createElement('div');
-    sigElement.classList.add('sig');
-    sigElement.textContent = `Signature: ${event.sig}`;
-    metadataElement.appendChild(sigElement);
-
-    // Append the content and metadata to the event element
-    eventElement.appendChild(contentElement);
-    eventElement.appendChild(metadataElement);
-
-    // Append the event element to the container
-    eventContainer.appendChild(eventElement);
-
-    eventCount++;
-    if (eventCount >= maxEvents) {
-      relay.close(); // Close the connection when the maximum number of events is reached
-    }
-  }
-});

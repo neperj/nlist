@@ -9,11 +9,11 @@
 </head>
 <body>
   <header>
-    <h1>nlist</h1>
+    <h1 id="nav-home">nlist</h1>
     <nav>
       <ul>
-        <li><a href="#">Post</a></li>
-        <li><a href="#">My Account</a></li>
+        <li><a href="#details">Post</a></li>
+        <li><a href="#profile">My Profile</a></li>
       </ul>
     </nav>
   </header>
@@ -27,10 +27,28 @@
       </form>
     </section>
 
-    <h1>nClient</h1>
-    <p id="pk-display"></p>
-    <div id="messages"></div>
-    <div id="event-container"></div>
+    <div id="app">
+      <div id="home" class="page">
+        <section id="intro-section">
+          <h2>Welcome to nList</h2>
+          <p>Discover curated listings</p>
+          <button id="show-list">Show List</button>
+        </section>
+      </div>
+  
+      <div id="listing" class="page">
+        <h1>nCategory</h1>
+        <div id="event-container"></div>
+      </div>
+  
+      <div id="profile" class="page">
+        <p>profile</p>
+      </div>
+  
+      <div id="details" class="page">
+        <p>details</p>
+      </div>
+    </div>
 </main>
 
 <footer>
