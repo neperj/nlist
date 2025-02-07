@@ -88,6 +88,19 @@ button {
   cursor: pointer;
 }
 
+#listing {
+  display: none;
+}
+
+#profile {
+  display: none;
+}
+
+#details {
+  display: none;
+}
+
+
 #event-container {
   display: flex;
   flex-direction: column;
