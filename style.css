@@ -1,28 +1,138 @@
-/* Global Styles */
-body {
-    font-family: Arial, sans-serif;
+/* Reset some default styles */
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
   }
   
-  /* Header Styles */
+  /* Global styles */
+  body {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #f0e8fc;
+    background-color: rgb(31, 0, 51);
+  }
+  
+  a {
+    color: #e73cd6;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Header styles */
   header {
-    background-color: #333;
-    color: #fff;
-    padding: 20px;
-    text-align: center;
+    background-color: #040109;
+    color: #f0e8fc;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
   
-  /* Main Content Styles */
+  header h1 {
+    font-size: 2rem;
+  }
+  
+  nav ul {
+    list-style-type: none;
+    display: flex;
+  }
+  
+  nav li {
+    margin-left: 1rem;
+  }
+  
+  nav a {
+    color: #f0e8fc;
+  }
+  
+  /* Main content styles */
   main {
-    padding: 20px;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
   }
   
-  /* Footer Styles */
-  footer {
-    background-color: #333;
-    color: #fff;
-    padding: 10px;
+  .hero {
     text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .hero h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .hero form {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+  
+  .hero input {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 4px 0 0 4px;
+    flex-grow: 1;
+  }
+  
+  .hero button {
+    background-color: #aa7bef;
+    color: #0b0a0c;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+  }
+  
+  .hero button:hover {
+    background-color: #8d1396;
+  }
+  
+  .listings {
+    margin-top: 2rem;
+  }
+  
+  .listings h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .listings ul {
+    list-style-type: none;
+  }
+  
+  .listings li {
+    border: 1px solid #ddd;
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .listings h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .listings p {
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Footer styles */
+  footer {
+    background-color: #040109;
+    color: #f0e8fc;
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+  }
+  
+  footer p {
+    font-size: 0.9rem;
   }
   
