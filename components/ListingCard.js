@@ -5,6 +5,8 @@ class ListingCard {
 
   render() {
     const element = document.createElement('div');
+    let formattedPrice = parseFloat(this.listing.price).toLocaleString();
+
     element.className = 'item-card';
     element.innerHTML = `
       <h2>${this.listing.title}</h2>
@@ -19,7 +21,7 @@ class ListingCard {
       ` : ''}
       <p class="summary">${this.listing.summary}</p>
       <div class="item-details">
-        <p class="price">Price: ${this.listing.price} ${this.listing.currency}</p>
+        <p class="price">Price: ${formattedPrice} ${this.listing.currency}</p>
         <p class="location">Location: ${this.listing.location}</p>
         <p class="shipping">Shipping: ${this.listing.shipping}</p>
         <p class="status">Status: ${this.listing.status}</p>

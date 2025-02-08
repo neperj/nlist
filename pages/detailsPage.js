@@ -13,6 +13,7 @@ async function detailsPageHandler() {
     const nostr = new NostrService();
     const event = await nostr.getListing(id);
     const listing = EventParser.parseListingData(event);
+    let formattedPrice = parseFloat(listing.price).toLocaleString();
 
     mainContent.innerHTML = `
         <div class="details-container">
@@ -29,7 +30,7 @@ async function detailsPageHandler() {
             <div class="listing-details">
                 <p class="description">${listing.summary}</p>
                 <div class="price-section">
-                    <h2>Price: ${listing.price} ${listing.currency}</h2>
+                    <h2>Price: ${formattedPrice} ${listing.currency}</h2>
                 </div>
                 <div class="details-section">
                     <p><strong>Location:</strong> ${listing.location}</p>
@@ -38,11 +39,11 @@ async function detailsPageHandler() {
                     <p><strong>Published:</strong> ${listing.publishedAt.toLocaleDateString()}</p>
                 </div>
                 <button class="contact-seller">Contact Seller</button>
+                <button id="copyButton">copy</button>
             </div>
         </div>
     `;
 
-      // Assuming 'listing.pubkey' is a variable containing the dynamic data
 
 
 let npub = window.NostrTools.nip19.npubEncode(listing.pubkey)
@@ -59,5 +60,39 @@ contactSellerButton.addEventListener("click", () => {
   // window.location.href(url, "_blank");
   window.open(url, "_blank");
 });
+
+const copyButton = document.getElementById('copyButton');
+
+
+// Add a click event listener to the button
+copyButton.addEventListener('click', () => {
+    // Get the current page's URL
+    const currentUrl = window.location.href;
+  
+    // Copy the URL to the clipboard
+    navigator.clipboard.writeText(currentUrl)
+      .then(() => {
+        // Show the alert for 1 second
+        const alert = document.createElement('div');
+        alert.textContent = 'Link copied to clipboard!';
+        alert.style.position = 'fixed';
+        alert.style.top = '50%';
+        alert.style.left = '50%';
+        alert.style.transform = 'translate(-50%, -50%)';
+        alert.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+        alert.style.color = 'white';
+        alert.style.padding = '10px 20px';
+        alert.style.borderRadius = '5px';
+        alert.style.zIndex = '9999';
+        document.body.appendChild(alert);
+  
+        setTimeout(() => {
+          document.body.removeChild(alert);
+        }, 1000);
+      })
+      .catch((error) => {
+        console.error('Failed to copy text: ', error);
+      });
+  });
 
 }
