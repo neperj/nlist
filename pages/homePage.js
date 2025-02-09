@@ -5,12 +5,12 @@ function homePageHandler() {
         <section id="intro-section">
           <h2>Welcome to nList</h2>
           <p>Discover curated listings</p>
-          <a href="#listing" class="nav-link" id="home-to-list">Show List</a>
+         
         </section>
         <div class="cl-categories">
           <div class="category-column">
               <h3>community</h3>
-              <p>activities</p>
+              <button class="tag-button" data-target="Food">Food</button>
               <p>events</p>
               <p>groups</p>
               
@@ -23,7 +23,7 @@ function homePageHandler() {
           <div class="category-column">
               <h3>services</h3>
               <p>automotive</p>
-              <p>computer</p>
+              <button class="tag-button" data-target="Electronics">Electronics</button>
               <p>labor</p>
               
               <h3>jobs</h3>
@@ -36,7 +36,7 @@ function homePageHandler() {
               <h3>for sale</h3>
               <p>electronics</p>
               <p>furniture</p>
-              <p>clothes</p>
+              <button class="tag-button" data-target="Clothing">Clothing</button>
               
               <h3>discussion</h3>
               <p>tech</p>
@@ -46,4 +46,24 @@ function homePageHandler() {
       </div>
         </div>
     `;
+
+  
+const tagButtons = document.querySelectorAll('.tag-button');
+
+// Add a click event listener to each button
+tagButtons.forEach(button => {
+  button.addEventListener('click', handleTagButtonClick);
+});
+
+function handleTagButtonClick(event) {
+    // Get the data-target attribute value from the clicked button
+    const target = event.target.getAttribute('data-target');
+    
+    // Construct the URL using the target value
+    const url = `#listing/${target}`;
+    
+    // Navigate to the URL
+    window.location.href = url;
+  }
+
 }

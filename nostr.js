@@ -11,20 +11,21 @@ class NostrService {
     return this.relay;
   }
 
-  async getListings(options = { limit: 30 }) {
+  async getListings(limit, tag) {
     const relay = await this.connect();
     return new Promise((resolve) => {
       const listings = [];
-      
+  
       relay.subscribe([
         {
           kinds: [30402],
+          '#t': [tag]
         }
       ], {
         onevent(event) {
           console.log(event);
           listings.push(event);
-          if (listings.length >= options.limit) {
+          if (listings.length >= limit) {
             relay.close();
             resolve(listings);
           }

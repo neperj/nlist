@@ -30,16 +30,16 @@ async function detailsPageHandler() {
             <div class="listing-details">
                 <p class="description">${listing.summary}</p>
                 <div class="price-section">
-                    <h2>Price: ${formattedPrice} ${listing.currency}</h2>
+                    <h2 class="price">Price: ${formattedPrice} ${listing.currency}</h2>
                 </div>
                 <div class="details-section">
-                    <p><strong>Location:</strong> ${listing.location}</p>
-                    <p><strong>Shipping:</strong> ${listing.shipping}</p>
-                    <p><strong>Status:</strong> ${listing.status}</p>
-                    <p><strong>Published:</strong> ${listing.publishedAt.toLocaleDateString()}</p>
+                    <p class="location"><strong>Location:</strong> ${listing.location}</p>
+                    <p class="shipping"><strong>Shipping:</strong> ${listing.shipping}</p>
+                    <p class="status"><strong>Status:</strong> ${listing.status}</p>
+                    <p class="published"><strong>Published:</strong> ${listing.publishedAt.toLocaleDateString()}</p>
                 </div>
                 <button class="contact-seller">Contact Seller</button>
-                <button id="copyButton">copy</button>
+                <button id="copyButton">Copy URL</button>
             </div>
         </div>
     `;
