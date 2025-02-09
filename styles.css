@@ -189,6 +189,7 @@ button:hover {
   background: rgba(170, 123, 239, 0.05);
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  word-break: break-all;
 }
 
 .item-card:hover {
@@ -293,7 +294,7 @@ footer {
 
 @media (max-width: 768px) {
   body {
-      font-size: 44px;
+      font-size: 16px;
   }
 
   header {
