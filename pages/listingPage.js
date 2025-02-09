@@ -10,7 +10,7 @@ async function listingPageHandler() {
     const mainContent = document.querySelector('#main');
     mainContent.innerHTML = `
         <div class="listings-container">
-            <h1>Listings</h1>
+            <h1>${tag}</h1>
             <div id="event-container"></div>
         </div>
     `;

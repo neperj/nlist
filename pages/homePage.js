@@ -11,24 +11,24 @@ function homePageHandler() {
           <div class="category-column">
               <h3>community</h3>
               <button class="tag-button" data-target="Food">Food</button>
-              <p>events</p>
-              <p>groups</p>
+              <button class="tag-button" data-target="Home">Home</button>
+              <button class="tag-button" data-target="Crafts">Crafts</button>
               
               <h3>housing</h3>
-              <p>apartments</p>
+              <button class="tag-button" data-target="Pets">Pets</button>
               <p>rooms</p>
               <p>office</p>
           </div>
   
           <div class="category-column">
               <h3>services</h3>
-              <p>automotive</p>
+              <button class="tag-button" data-target="Digital">Digital</button>
               <button class="tag-button" data-target="Electronics">Electronics</button>
-              <p>labor</p>
+              <button class="tag-button" data-target="Accessories">Accessories</button>
               
               <h3>jobs</h3>
-              <p>tech</p>
-              <p>admin</p>
+              <button class="tag-button" data-target="Books">Books</button>
+              <button class="tag-button" data-target="Office">Office</button>
               <p>labor</p>
           </div>
   
@@ -41,7 +41,7 @@ function homePageHandler() {
               <h3>discussion</h3>
               <p>tech</p>
               <p>politics</p>
-              <p>arts</p>
+              <button class="tag-button" data-target="dummy">dummy</button>
           </div>
       </div>
         </div>
