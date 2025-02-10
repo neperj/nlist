@@ -1,3 +1,42 @@
+// Global variable to store the user's npub
+let myNpub = null;
+
+// Function to handle Nostr login
+function handleNostrLogin() {
+  if (typeof window.nostr !== 'undefined' && window.nostr !== null) {
+    window.nostr.getPublicKey().then((npub) => {
+      myNpub = npub;
+      console.log('Logged in as:', myNpub);
+      updateNavLinks();
+    }).catch((err) => {
+      console.error('Error getting public key:', err);
+    });
+  } else {
+    console.error('Nostr extension not found. Please install a Nostr extension to use this application.');
+  }
+}
+
+// Function to update the navigation links
+function updateNavLinks() {
+  const postLink = document.getElementById('postLink');
+  const profileLink = document.getElementById('profileLink');
+
+  if (myNpub === null) {
+    postLink.classList.add('disabled');
+    profileLink.textContent = 'Log In';
+  } else {
+    postLink.classList.remove('disabled');
+    profileLink.textContent = myNpub;
+  }
+}
+
+// Check for Nostr extension and attempt to log in on page load
+window.addEventListener('load', () => {
+  handleNostrLogin();
+});
+
+
+
 const routes = {
     '#': homePageHandler,
     '#listing': listingPageHandler,
