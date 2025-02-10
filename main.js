@@ -49,6 +49,12 @@ const routes = {
     '#details': detailsPageHandler,
     '#profile': profilePageHandler,
     '#post': postingPageHandler,
+    '*': () => {
+      
+      console.error('Invalid route');
+      // Redirect to the home page or display a custom 404 page
+      window.location.hash = '#';
+    },
 };
 
 function handleRoute() {
@@ -56,6 +62,7 @@ function handleRoute() {
     const baseHash = hash.split('/')[0]; // Handle cases like #details/123
     const handler = routes[baseHash] || routes['#'];
     handler();
+    window.scrollTo(0, 0);
 }
 
 
