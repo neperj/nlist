@@ -9,39 +9,45 @@ function homePageHandler() {
         </section>
         <div class="cl-categories">
           <div class="category-column">
-              <h3>community</h3>
-              <button class="tag-button" data-target="Food">Food</button>
-              <button class="tag-button" data-target="Home">Home</button>
-              <button class="tag-button" data-target="Crafts">Crafts</button>
-              
-              <h3>housing</h3>
-              <button class="tag-button" data-target="Pets">Pets</button>
-              <p>rooms</p>
-              <p>office</p>
-          </div>
-  
-          <div class="category-column">
-              <h3>services</h3>
+              <h3>Tech and Electronics</h3>
               <button class="tag-button" data-target="Digital">Digital</button>
               <button class="tag-button" data-target="Electronics">Electronics</button>
               <button class="tag-button" data-target="Accessories">Accessories</button>
+
               
-              <h3>jobs</h3>
-              <button class="tag-button" data-target="Books">Books</button>
-              <button class="tag-button" data-target="Office">Office</button>
-              <p>labor</p>
+              <h3>Arts & Crafts</h3>
+              <button class="tag-button" data-target="Art">Art</button>
+              <button class="tag-button" data-target="Crafts">Crafts</button>
+              <button class="tag-button" data-target="Entertainment">Entertainment</button>
           </div>
   
           <div class="category-column">
-              <h3>for sale</h3>
-              <p>electronics</p>
-              <p>furniture</p>
+              <h3>Home & Lifestyle</h3>
+              <button class="tag-button" data-target="Food">Food</button>
               <button class="tag-button" data-target="Clothing">Clothing</button>
+              <button class="tag-button" data-target="Sports">Sports</button>
+              <button class="tag-button" data-target="Fitness">Fitness</button>
+              <button class="tag-button" data-target="Tickets">Tickets</button>
+              <button class="tag-button" data-target="Home">Home</button>
+              <button class="tag-button" data-target="Pets">Pets</button>              
               
-              <h3>discussion</h3>
-              <p>tech</p>
-              <p>politics</p>
-              <button class="tag-button" data-target="dummy">dummy</button>
+              
+              <h3>Media and Books</h3>
+              <button class="tag-button" data-target="Books">Books</button>
+              <button class="tag-button" data-target="Office">Office</button>
+          </div>
+  
+          <div class="category-column">
+              <h3>Services and Transactions</h3>
+              <button class="tag-button" data-target="Services">Services</button>
+              <button class="tag-button" data-target="Resale">Resale</button>
+              <button class="tag-button" data-target="Exchange">Exchange</button>
+              <button class="tag-button" data-target="Swap">Swap</button>
+  
+
+              <h3>Miscellaneous</h3>
+              <button class="tag-button" data-target="Physical">Physical</button>
+              <button class="tag-button" data-target="Miscellaneous">Miscellaneous</button>
           </div>
       </div>
         </div>
