@@ -9,7 +9,11 @@ class ListingCard {
 
     element.className = 'item-card';
     element.innerHTML = `
-      <h2>${this.listing.title}</h2>
+      <div class="title-price">
+        <h2 class="title">${this.listing.title}</h2>
+        <h3 class="price">Price: ${formattedPrice} ${this.listing.currency}</h3>
+        
+      </div>
       ${this.listing.images.length > 0 ? `
         <div class="image-gallery">
           ${this.listing.images.map(img => `
@@ -21,11 +25,15 @@ class ListingCard {
       ` : ''}
       <p class="summary">${this.listing.summary}</p>
       <div class="item-details">
-        <p class="price">Price: ${formattedPrice} ${this.listing.currency}</p>
-        <p class="location">Location: ${this.listing.location}</p>
-        <p class="shipping">Shipping: ${this.listing.shipping}</p>
-        <p class="status">Status: ${this.listing.status}</p>
-        <p class="published">Published: ${this.listing.publishedAt.toLocaleDateString()}</p>
+        <div class="published-status">
+          <p class="status">Status: ${this.listing.status}</p>
+          <p class="published">Published: ${this.listing.publishedAt.toLocaleDateString()}</p>
+        </div>
+        <div class="location-shipping">
+          <p class="location">Location: ${this.listing.location}</p>
+          <p class="shipping">Shipping: ${this.listing.shipping}</p>
+        </div>
+        
       </div>
     `;
 
@@ -33,6 +41,7 @@ class ListingCard {
       window.location.hash = `#details/${this.listing.id}`;
   });
 
+  
     return element;
   }
 }

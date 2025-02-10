@@ -94,6 +94,7 @@ const EventParser = {
   parseListingData(event) {
     return {
       id: event.id,
+      content: event.content,
       title: this.getTagValue(event, 'title'),
       images: event.tags.filter(tag => tag[0] === 'image').map(tag => tag[1]),
       summary: this.getTagValue(event, 'summary'),

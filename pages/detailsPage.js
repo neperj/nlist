@@ -18,6 +18,7 @@ async function detailsPageHandler() {
     mainContent.innerHTML = `
         <div class="details-container">
             <h1>${listing.title}</h1>
+          
             ${listing.images.length > 0 ? `
                 <div class="image-gallery-large">
                     ${listing.images.map(img => `
@@ -27,11 +28,16 @@ async function detailsPageHandler() {
                     `).join('')}
                 </div>
             ` : ''}
-            <div class="listing-details">
-                <p class="description">${listing.summary}</p>
                 <div class="price-section">
                     <h2 class="price">Price: ${formattedPrice} ${listing.currency}</h2>
-                </div>
+                </div>       
+            <div class="listing-details">
+                <hr/>
+                <p>Content:</p>
+                <h3 class="item-content">${listing.content}</h3>
+                <hr/>
+                <p class="description">Description: ${listing.summary}</p>
+
                 <div class="details-section">
                     <p class="location"><strong>Location:</strong> ${listing.location}</p>
                     <p class="shipping"><strong>Shipping:</strong> ${listing.shipping}</p>

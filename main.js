@@ -29,7 +29,7 @@ function updateNavLinks() {
     profileLink.textContent = 'Log In';
   } else {
    
-    myProfile.textContent = myNpub;
+    myProfile.textContent = myNpub.slice(0, 9) + "...";
     myProfile.addEventListener("click", () => {
       window.location.hash = `#profile/${myPk}`;
   });

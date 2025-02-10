@@ -1,5 +1,5 @@
 async function listingPageHandler() {
-
+    const mainContent = document.querySelector('#main');
     const tag = window.location.hash.split('/')[1];
     
     if (!tag) {
@@ -7,7 +7,7 @@ async function listingPageHandler() {
         return;
     }
 
-    const mainContent = document.querySelector('#main');
+    
     mainContent.innerHTML = `
         <div class="listings-container">
             <h1>${tag}</h1>
