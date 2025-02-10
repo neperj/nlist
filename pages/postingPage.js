@@ -7,10 +7,7 @@ function postingPageHandler() {
                 <h2>My Listing Form</h2>
                 <div id="my-post"></div>
                 
-                <h2>Settings</h2>
-                <div class="settings-section">
-                    <!-- Add profile settings here -->
-                </div>
+
             </div>
         </div>
     `;

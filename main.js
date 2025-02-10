@@ -1,11 +1,15 @@
 // Global variable to store the user's npub
 let myNpub = null;
+let myPk = null;
+window.myPkey = null;
 
 // Function to handle Nostr login
 function handleNostrLogin() {
   if (typeof window.nostr !== 'undefined' && window.nostr !== null) {
-    window.nostr.getPublicKey().then((npub) => {
-      myNpub = npub;
+    window.nostr.getPublicKey().then((pk) => {
+      myPk = pk
+      window.myPkey = myPk;
+      myNpub = window.NostrTools.nip19.npubEncode(pk);
       console.log('Logged in as:', myNpub);
       updateNavLinks();
     }).catch((err) => {
@@ -18,15 +22,17 @@ function handleNostrLogin() {
 
 // Function to update the navigation links
 function updateNavLinks() {
-  const postLink = document.getElementById('postLink');
-  const profileLink = document.getElementById('profileLink');
+  const myProfile = document.getElementById('profileLink');
 
   if (myNpub === null) {
-    postLink.classList.add('disabled');
+    
     profileLink.textContent = 'Log In';
   } else {
-    postLink.classList.remove('disabled');
-    profileLink.textContent = myNpub;
+   
+    myProfile.textContent = myNpub;
+    myProfile.addEventListener("click", () => {
+      window.location.hash = `#profile/${myPk}`;
+  });
   }
 }
 

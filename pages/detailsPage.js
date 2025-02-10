@@ -38,7 +38,8 @@ async function detailsPageHandler() {
                     <p class="status"><strong>Status:</strong> ${listing.status}</p>
                     <p class="published"><strong>Published:</strong> ${listing.publishedAt.toLocaleDateString()}</p>
                 </div>
-                <button class="contact-seller">Contact Seller</button>
+                <button class="seller-profile">Seller's Profile on Nostr</button>
+                <button class="seller-listings">All Seller's Listings</button>
                 <button id="copyButton">Copy URL</button>
             </div>
         </div>
@@ -47,24 +48,27 @@ async function detailsPageHandler() {
 
 
 let npub = window.NostrTools.nip19.npubEncode(listing.pubkey)
-
+console.log(npub)
 // Get the button element
-const contactSellerButton = document.querySelector(".contact-seller");
+const sellerProfileButton = document.querySelector(".seller-profile");
+const sellerListingsButton = document.querySelector(".seller-listings");
 
 // Add a click event listener to the button
-contactSellerButton.addEventListener("click", () => {
-  // Construct the URL with the dynamic data
-  const url = `https://njump.me/${npub}`;
-
-  // Open the URL in a new browser window
-  // window.location.href(url, "_blank");
-  window.open(url, "_blank");
+sellerProfileButton.addEventListener("click", () => {
+    const url = `https://njump.me/${npub}`;
+  
+    // Open the URL in a new browser window
+    // window.location.href(url, "_blank");
+    window.open(url, "_blank");
 });
 
+sellerListingsButton.addEventListener("click", () => {
+    window.location.hash = `#profile/${listing.pubkey}`;
+});
+
+
+
 const copyButton = document.getElementById('copyButton');
-
-
-// Add a click event listener to the button
 copyButton.addEventListener('click', () => {
     // Get the current page's URL
     const currentUrl = window.location.href;
