@@ -6,7 +6,7 @@ window.myPkey = null;
 function handleNostrLogin() {
   if (typeof window.nostr !== 'undefined' && window.nostr !== null) {
     window.nostr.getPublicKey().then((pk) => {
-      myPk = pk
+      myPk = pk;
       window.myPkey = myPk;
       myNpub = window.NostrTools.nip19.npubEncode(pk);
       console.log('Logged in as:', myNpub);
@@ -23,17 +23,14 @@ function updateNavLinks() {
   const myProfile = document.getElementById('profileLink');
 
   if (myNpub === null) {
-    
     profileLink.textContent = 'Log In';
   } else {
-   
     myProfile.textContent = myNpub.slice(0, 9) + "...";
     myProfile.addEventListener("click", () => {
       window.location.hash = `#profile/${myPk}`;
-  });
+    });
   }
 }
-
 
 const routes = {
     '#': homePageHandler,
@@ -42,7 +39,6 @@ const routes = {
     '#profile': profilePageHandler,
     '#post': postingPageHandler,
     '*': () => {
-      
       console.error('Invalid route');
       window.location.hash = '#';
     },
@@ -56,15 +52,13 @@ function handleRoute() {
     window.scrollTo(0, 0);
 }
 
-
 document.addEventListener('DOMContentLoaded', () => {
     handleRoute();
-  
     window.addEventListener('hashchange', handleRoute);
 
     // Check for Nostr extension and attempt to log in on page load
     window.addEventListener('load', () => {
-      handleNostrLogin();
+      // Use a timeout to give the Nostr extension time to initialize
+      setTimeout(handleNostrLogin, 1000);
     });
-    
 });
