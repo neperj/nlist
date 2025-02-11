@@ -103,7 +103,8 @@ const EventParser = {
       location: this.getTagValue(event, 'location'),
       shipping: event.tags.find(tag => tag[0] === 'shipping')?.[1] || 'N/A',
       status: this.getTagValue(event, 'status'),
-      publishedAt: new Date(parseInt(this.getTagValue(event, 'published_at')) * 1000),
+      publishedAt: this.getTagValue(event, 'published_at'),
+      editedAt: event.created_at,
       pubkey: event.pubkey
     };
   }
