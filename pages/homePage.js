@@ -56,19 +56,15 @@ function homePageHandler() {
   
 const tagButtons = document.querySelectorAll('.tag-button');
 
-// Add a click event listener to each button
 tagButtons.forEach(button => {
   button.addEventListener('click', handleTagButtonClick);
 });
 
 function handleTagButtonClick(event) {
-    // Get the data-target attribute value from the clicked button
     const target = event.target.getAttribute('data-target');
     
-    // Construct the URL using the target value
     const url = `#listing/${target}`;
     
-    // Navigate to the URL
     window.location.href = url;
   }
 

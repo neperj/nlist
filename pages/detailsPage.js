@@ -8,7 +8,6 @@ async function detailsPageHandler() {
         return;
       }
   
-      // Show loading state
       mainContent.innerHTML = '<div>Loading...</div>';
   
       const nostr = new NostrService();
@@ -55,7 +54,6 @@ async function detailsPageHandler() {
       setupEventListeners(listing);
     } catch (error) {
       console.error('Error rendering details page:', error);
-      // Handle the error, e.g., display an error message to the user
     }
   }
   
@@ -82,18 +80,15 @@ async function detailsPageHandler() {
     const sellerListingsButton = document.querySelector('.seller-listings');
     const copyButton = document.getElementById('copyButton');
   
-    // Add a click event listener to the seller profile button
     sellerProfileButton.addEventListener('click', () => {
       const url = `https://njump.me/${npub}`;
       window.open(url, '_blank');
     });
   
-    // Add a click event listener to the seller listings button
     sellerListingsButton.addEventListener('click', () => {
       window.location.hash = `#profile/${listing.pubkey}`;
     });
   
-    // Add a click event listener to the copy button
     copyButton.addEventListener('click', () => {
       copyToClipboard(window.location.href);
     });

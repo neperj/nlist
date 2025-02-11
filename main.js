@@ -1,4 +1,3 @@
-// Global variable to store the user's npub
 let myNpub = null;
 let myPk = null;
 window.myPkey = null;
@@ -20,7 +19,6 @@ function handleNostrLogin() {
   }
 }
 
-// Function to update the navigation links
 function updateNavLinks() {
   const myProfile = document.getElementById('profileLink');
 
@@ -36,9 +34,6 @@ function updateNavLinks() {
   }
 }
 
-// Check for Nostr extension and attempt to log in on page load
-
-
 
 const routes = {
     '#': homePageHandler,
@@ -49,7 +44,6 @@ const routes = {
     '*': () => {
       
       console.error('Invalid route');
-      // Redirect to the home page or display a custom 404 page
       window.location.hash = '#';
     },
 };
@@ -63,14 +57,12 @@ function handleRoute() {
 }
 
 
-
 document.addEventListener('DOMContentLoaded', () => {
-    // Initial route handling
     handleRoute();
   
-    // Listen for hash changes
     window.addEventListener('hashchange', handleRoute);
 
+    // Check for Nostr extension and attempt to log in on page load
     window.addEventListener('load', () => {
       handleNostrLogin();
     });

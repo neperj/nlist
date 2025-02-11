@@ -33,7 +33,6 @@ async function profilePageHandler() {
       });
     } catch (error) {
       console.error('Error rendering profile page:', error);
-      // Handle the error, e.g., display an error message to the user
     }
   }
   
