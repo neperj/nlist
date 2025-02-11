@@ -9,7 +9,6 @@ class ListingCard {
     element.innerHTML = `
       <div class="title-price">
         <h2 class="title">${this.listing.title}</h2>
-        <p>conditional for the frequency</p>
         <h3 class="price">Price: ${formatPrice(this.listing.price)} ${this.listing.currency} ${this.listing.frequency}</h3>
       </div>
       ${this.listing.images.length > 0 ? `
