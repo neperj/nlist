@@ -28,7 +28,7 @@ async function detailsPageHandler() {
             </div>
           ` : ''}
           <div class="price-section">
-            <h2 class="price">Price: ${formatPrice(listing.price)} ${listing.currency}</h2>
+            <h2 class="price">Price: ${formatPrice(listing.price)} ${listing.currency} ${listing.frequency}</h2>
           </div>
           <div class="listing-details">
             <hr/>

@@ -100,6 +100,7 @@ const EventParser = {
       summary: this.getTagValue(event, 'summary'),
       price: this.getTagValue(event, 'price'),
       currency: event.tags.find(tag => tag[0] === 'price')?.[2] || 'unknown',
+      frequency: event.tags.find(tag => tag[0] === 'price')?.[3] || ' ',
       location: this.getTagValue(event, 'location'),
       shipping: event.tags.find(tag => tag[0] === 'shipping')?.[1] || 'N/A',
       status: this.getTagValue(event, 'status'),
