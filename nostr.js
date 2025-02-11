@@ -37,6 +37,31 @@ class NostrService {
     });
   }
 
+  async getAllListings(limit) {
+    const relay = await this.connect();
+    return new Promise((resolve) => {
+      const listings = [];
+  
+      relay.subscribe([
+        {
+          kinds: [30402],
+        }
+      ], {
+        onevent(event) {
+          console.log(event);
+          listings.push(event);
+          if (listings.length >= limit) {
+            relay.close();
+            resolve(listings);
+          }
+        },
+        oneose() {
+          resolve(listings);
+        }
+      });
+    });
+  }
+
   async getNpubListings(limit, pk) {
     const relay = await this.connect();
     return new Promise((resolve) => {

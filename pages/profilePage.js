@@ -41,7 +41,7 @@ async function profilePageHandler() {
     if (window.myPkey === profile) {
       return `
         <div class="settings-section">
-          <h2>Settings</h2>
+          <h2>Settings <== visible if my npub</h2>
           <!-- Add profile settings here -->
         </div>
       `;

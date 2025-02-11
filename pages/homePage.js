@@ -3,7 +3,6 @@ function homePageHandler() {
     mainContent.innerHTML = `
         <div class="home-container">
         <section id="intro-section">
-          <h2>Welcome to nList</h2>
           <p>Discover curated listings</p>
          
         </section>
@@ -19,6 +18,7 @@ function homePageHandler() {
               <button class="tag-button" data-target="Art">Art</button>
               <button class="tag-button" data-target="Crafts">Crafts</button>
               <button class="tag-button" data-target="Entertainment">Entertainment</button>
+              <button class="tag-button" data-target="all">EVERYTHING</button>
           </div>
   
           <div class="category-column">
