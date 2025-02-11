@@ -37,9 +37,6 @@ function updateNavLinks() {
 }
 
 // Check for Nostr extension and attempt to log in on page load
-window.addEventListener('load', () => {
-  handleNostrLogin();
-});
 
 
 
@@ -70,7 +67,12 @@ function handleRoute() {
 document.addEventListener('DOMContentLoaded', () => {
     // Initial route handling
     handleRoute();
-
+  
     // Listen for hash changes
     window.addEventListener('hashchange', handleRoute);
+
+    window.addEventListener('load', () => {
+      handleNostrLogin();
+    });
+    
 });
