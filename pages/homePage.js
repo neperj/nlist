@@ -1,4 +1,5 @@
-function homePageHandler() {
+async function homePageHandler() {
+  try {
     const mainContent = document.querySelector('#main');
     mainContent.innerHTML = `
         <div class="home-container">
@@ -53,19 +54,22 @@ function homePageHandler() {
         </div>
     `;
 
-  
-const tagButtons = document.querySelectorAll('.tag-button');
 
-tagButtons.forEach(button => {
-  button.addEventListener('click', handleTagButtonClick);
-});
+    const tagButtons = document.querySelectorAll('.tag-button');
 
-function handleTagButtonClick(event) {
-    const target = event.target.getAttribute('data-target');
-    
-    const url = `#listing/${target}`;
-    
-    window.location.href = url;
+    tagButtons.forEach(button => {
+      button.addEventListener('click', handleTagButtonClick);
+    });
+
+
+    function handleTagButtonClick(event) {
+      const target = event.target.getAttribute('data-target');
+
+      const url = `#listing/${target}`;
+
+      window.location.href = url;
+    };
+  } catch (error) {
+    console.error('Error rendering posting page:', error);
   }
-
 }

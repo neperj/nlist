@@ -2,6 +2,39 @@ let myNpub = null;
 let myPk = null;
 window.myPkey = null;
 
+
+const routes = {
+    '#': homePageHandler,
+    '#listing': listingsPageHandler,
+    '#details': detailsPageHandler,
+    '#profile': profilePageHandler,
+    '#post': postingPageHandler,
+    '*': () => {
+      console.error('Invalid route');
+      window.location.hash = '#';
+    },
+};
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    handleRoute();
+    window.addEventListener('hashchange', handleRoute);
+
+    // Check for Nostr extension and attempt to log in on page load
+    window.addEventListener('load', () => {
+      // Use a timeout to give the Nostr extension time to initialize
+      setTimeout(handleNostrLogin, 1000);
+    });
+});
+
+function handleRoute() {
+  const hash = window.location.hash || '#';
+  const baseHash = hash.split('/')[0]; // Handle cases like #details/123
+  const handler = routes[baseHash] || routes['#'];
+  handler();
+  window.scrollTo(0, 0);
+}
+
 // Function to handle Nostr login
 function handleNostrLogin() {
   if (typeof window.nostr !== 'undefined' && window.nostr !== null) {
@@ -31,34 +64,3 @@ function updateNavLinks() {
     });
   }
 }
-
-const routes = {
-    '#': homePageHandler,
-    '#listing': listingPageHandler,
-    '#details': detailsPageHandler,
-    '#profile': profilePageHandler,
-    '#post': postingPageHandler,
-    '*': () => {
-      console.error('Invalid route');
-      window.location.hash = '#';
-    },
-};
-
-function handleRoute() {
-    const hash = window.location.hash || '#';
-    const baseHash = hash.split('/')[0]; // Handle cases like #details/123
-    const handler = routes[baseHash] || routes['#'];
-    handler();
-    window.scrollTo(0, 0);
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    handleRoute();
-    window.addEventListener('hashchange', handleRoute);
-
-    // Check for Nostr extension and attempt to log in on page load
-    window.addEventListener('load', () => {
-      // Use a timeout to give the Nostr extension time to initialize
-      setTimeout(handleNostrLogin, 1000);
-    });
-});
