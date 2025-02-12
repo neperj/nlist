@@ -1,3 +1,11 @@
+:root {
+  --text: #f0e8fc;
+  --background: #040109;
+  --primary: #aa7bef;
+  --secondary: #8d1396;
+  --accent: #e73cd6;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -11,11 +19,6 @@ body {
   font-size: 16px;
   line-height: 1.6;
   letter-spacing: 0.015em;
-  --text: #f0e8fc;
-  --background: #040109;
-  --primary: #aa7bef;
-  --secondary: #8d1396;
-  --accent: #e73cd6;
 }
 
 header {
@@ -103,7 +106,6 @@ button:hover {
 
 
 
-
 .price {
   color: var(--accent);
   grid-column: 1 / -1;
@@ -127,8 +129,6 @@ button:hover {
   grid-column: 1 / -1;
   margin-bottom: 8px;
 }
-
-
 
 
 /************************************************/
@@ -189,7 +189,6 @@ button:hover {
 .category-column p:hover {
   color: var(--accent);
 }
-
 
 
 /************************************************/
@@ -293,8 +292,6 @@ button:hover {
 }
 
 
-
-
 .item-card .summary {
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -339,7 +336,6 @@ button:hover {
 /******************DetailsPage******************/
 /************************************************/
 
-
 .image-gallery-large {
   display: flex;
   gap: 0.5rem;
@@ -377,7 +373,6 @@ button:hover {
 }
 
 
-
 /************************************************/
 /******************PostingPage******************/
 /************************************************/
@@ -406,13 +401,8 @@ button:hover {
   background-color: var(--primary);
 }
 
-
-
-
-
 /************************************************/
 /************************************************/
-
 
 footer {
   padding: 1rem;
@@ -420,7 +410,8 @@ footer {
   border-top: 1px solid var(--primary);
   margin-top: 2rem;
   height: 6vh;
-}
+}   
+
 
 @media (max-width: 768px) {
   body {
@@ -477,6 +468,3 @@ footer {
       margin: 0 auto;
   }
 }
-
-
-
