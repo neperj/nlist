@@ -9,13 +9,30 @@ async function postingPageHandler() {
             <div id="my-post">
               <form id="post-form">
                 <p>create a listing</p>
+                <label for="tags">Choose a tag:</label>
+                <select id="tags">
+                  ${config.categories
+                    .map(
+                      (category) => `
+                    <optgroup label="${category.title}">
+                      ${category.items
+                        .map(
+                          (item) => `
+                        <option value="${item.name}">${item.displayName}</option>
+                      `
+                        )
+                        .join("")}
+                    </optgroup>
+                  `
+                    )
+                    .join("")}
+                </select>
                 <button type="submit">Prints dummy k-30402</button>
               </form>
             </div>
           </div>
         </div>
       `;
-
     const postForm = document.getElementById("post-form");
     postForm.addEventListener("submit", async (event) => {
       event.preventDefault();
@@ -23,7 +40,7 @@ async function postingPageHandler() {
       const kind = 30402;
       const createdAt = 1675642635;
       const content =
-        "Lorem [ipsum] dolor risva pafficia deserunt Read zkjurnw4ksz9thwden5te0wfjkccte9ehx7um5wghx7un8qgs2d90kkcq3nk2jry62dyf50k0h36rhpdtd594my40w9pkal876jxgrqsqqqa28pccpzu.";
+        "Lorem [ipsum] dolor risva pafficia deserunt Read zkjurnw4ksz9thwden5te0wfjk0k0h36rhpdtd594my40w9pkal876jxgrqsqqqa28pccpzu.";
       const title = "Lorem Ipsum";
       const summary = "More lorem ipsum that is a little more than the title";
       const price = "100";
