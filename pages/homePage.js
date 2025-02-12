@@ -1,6 +1,6 @@
 async function homePageHandler() {
   try {
-    const mainContent = document.querySelector('#main');
+    const mainContent = document.querySelector("#main");
     mainContent.innerHTML = `
         <div class="home-container">
         <section id="intro-section">
@@ -54,22 +54,20 @@ async function homePageHandler() {
         </div>
     `;
 
+    const tagButtons = document.querySelectorAll(".tag-button");
 
-    const tagButtons = document.querySelectorAll('.tag-button');
-
-    tagButtons.forEach(button => {
-      button.addEventListener('click', handleTagButtonClick);
+    tagButtons.forEach((button) => {
+      button.addEventListener("click", handleTagButtonClick);
     });
 
-
     function handleTagButtonClick(event) {
-      const target = event.target.getAttribute('data-target');
+      const target = event.target.getAttribute("data-target");
 
       const url = `#listing/${target}`;
 
       window.location.href = url;
-    };
+    }
   } catch (error) {
-    console.error('Error rendering posting page:', error);
+    console.error("Error rendering posting page:", error);
   }
 }

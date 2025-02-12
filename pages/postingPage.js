@@ -1,7 +1,7 @@
 async function postingPageHandler() {
-    try {
-      const mainContent = document.querySelector('#main');
-      mainContent.innerHTML = `
+  try {
+    const mainContent = document.querySelector("#main");
+    mainContent.innerHTML = `
         <div class="posting-container">
           <h1>Post</h1>
           <div class="post-details">
@@ -15,51 +15,59 @@ async function postingPageHandler() {
           </div>
         </div>
       `;
-  
-      const postForm = document.getElementById('post-form');
-      postForm.addEventListener('submit', async (event) => {
-        event.preventDefault();
-  
-        const kind = 30402;
-        const createdAt = 1675642635;
-        const content = "Lorem [ipsum] dolor risva pafficia deserunt Read zkjurnw4ksz9thwden5te0wfjkccte9ehx7um5wghx7un8qgs2d90kkcq3nk2jry62dyf50k0h36rhpdtd594my40w9pkal876jxgrqsqqqa28pccpzu.";
-        const title = "Lorem Ipsum";
-        const summary = "More lorem ipsum that is a little more than the title";
-        const price = "100";
-        const currency = "USD";
-        const frequency = "Hour";
-        const location = "NYC";
-        const tTag = "electronics";
-        const pubkey = "...";
-        const sig = "...";
-  
-        const eventTemplate = {
-          kind,
-          created_at: createdAt,
-          content,
-          tags: [
-            ["d", "lorem-ipsum"],
-            ["title", title],
-            ["published_at", "1296962229"],
-            ["t", tTag],
-            ["image", "https://url.to.img", "256x256"],
-            ["summary", summary],
-            ["location", location],
-            ["price", price, currency, frequency],
-            ["e", "b3e392b11f5d4f28321cedd09303a748acfd0487aea5a7450b3481c60b6e4f87", "wss://relay.example.com"],
-            ["a", "30023:a695f6b60119d9521934a691347d9f78e8770b56da16bb255ee286ddf9fda919:ipsum", "wss://relay.nostr.org"],
+
+    const postForm = document.getElementById("post-form");
+    postForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      const kind = 30402;
+      const createdAt = 1675642635;
+      const content =
+        "Lorem [ipsum] dolor risva pafficia deserunt Read zkjurnw4ksz9thwden5te0wfjkccte9ehx7um5wghx7un8qgs2d90kkcq3nk2jry62dyf50k0h36rhpdtd594my40w9pkal876jxgrqsqqqa28pccpzu.";
+      const title = "Lorem Ipsum";
+      const summary = "More lorem ipsum that is a little more than the title";
+      const price = "100";
+      const currency = "USD";
+      const frequency = "Hour";
+      const location = "NYC";
+      const tTag = "electronics";
+      const pubkey = "...";
+      const sig = "...";
+
+      const eventTemplate = {
+        kind,
+        created_at: createdAt,
+        content,
+        tags: [
+          ["d", "lorem-ipsum"],
+          ["title", title],
+          ["published_at", "1296962229"],
+          ["t", tTag],
+          ["image", "https://url.to.img", "256x256"],
+          ["summary", summary],
+          ["location", location],
+          ["price", price, currency, frequency],
+          [
+            "e",
+            "b3e392b11f5d4f28321cedd09303a748acfd0487aea5a7450b3481c60b6e4f87",
+            "wss://relay.example.com",
           ],
-          pubkey,
-          sig,
-        };
-  
-        console.log(eventTemplate);
-        // Finalize the event and send it
-        // const signedEvent = finalizeEvent(eventTemplate, sk);
-        // Add your logic to send the signed event
-      });
-    } catch (error) {
-      console.error('Error rendering posting page:', error);
-    }
+          [
+            "a",
+            "30023:a695f6b60119d9521934a691347d9f78e8770b56da16bb255ee286ddf9fda919:ipsum",
+            "wss://relay.nostr.org",
+          ],
+        ],
+        pubkey,
+        sig,
+      };
+
+      console.log(eventTemplate);
+      // Finalize the event and send it
+      // const signedEvent = finalizeEvent(eventTemplate, sk);
+      // Add your logic to send the signed event
+    });
+  } catch (error) {
+    console.error("Error rendering posting page:", error);
+  }
 }
-  

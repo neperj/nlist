@@ -4,27 +4,39 @@ class ListingCard {
   }
 
   render() {
-    const element = document.createElement('div');
-    element.className = 'item-card';
+    const element = document.createElement("div");
+    element.className = "item-card";
     element.innerHTML = `
       <div class="title-price">
         <h2 class="title">${this.listing.title}</h2>
-        <h3 class="price">Price: ${formatPrice(this.listing.price)} ${this.listing.currency} ${this.listing.frequency}</h3>
+        <h3 class="price">Price: ${formatPrice(this.listing.price)} ${
+      this.listing.currency
+    } ${this.listing.frequency}</h3>
       </div>
-      ${this.listing.images.length > 0 ? `
+      ${
+        this.listing.images.length > 0
+          ? `
         <div class="image-gallery">
-          ${this.listing.images.map(img => `
+          ${this.listing.images
+            .map(
+              (img) => `
             <div class="image-thumbnail">
               <img src="${img}" alt="${this.listing.title}">
             </div>
-          `).join('')}
+          `
+            )
+            .join("")}
         </div>
-      ` : ''}
+      `
+          : ""
+      }
       <p class="summary">${this.listing.summary}</p>
       <div class="item-details">
         <div class="published-status">
           <p class="status">Status: ${this.listing.status}</p>
-          <p class="published">Published: ${formatTimestamp(this.listing.publishedAt)}</p>
+          <p class="published">Published: ${formatTimestamp(
+            this.listing.publishedAt
+          )}</p>
         </div>
         <div class="location-shipping">
           <p class="location">Location: ${this.listing.location}</p>
@@ -33,7 +45,7 @@ class ListingCard {
       </div>
     `;
 
-    element.addEventListener('click', () => {
+    element.addEventListener("click", () => {
       window.location.hash = `#details/${this.listing.id}`;
     });
 

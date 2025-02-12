@@ -1,10 +1,10 @@
 async function profilePageHandler() {
   try {
-    const mainContent = document.querySelector('#main');
-    const profile = window.location.hash.split('/')[1];
+    const mainContent = document.querySelector("#main");
+    const profile = window.location.hash.split("/")[1];
 
     if (!profile) {
-      window.location.hash = '#';
+      window.location.hash = "#";
       return;
     }
 
@@ -26,13 +26,13 @@ async function profilePageHandler() {
     const nostr = new NostrService();
     const listings = await nostr.getNpubListings(limit, profile);
 
-    const container = document.getElementById('profile-event-container');
-    listings.forEach(event => {
+    const container = document.getElementById("profile-event-container");
+    listings.forEach((event) => {
       const card = new ListingCard(event);
       container.appendChild(card.render());
     });
   } catch (error) {
-    console.error('Error rendering profile page:', error);
+    console.error("Error rendering profile page:", error);
   }
 }
 
@@ -45,7 +45,7 @@ function getSettingsSection(profile) {
       </div>
     `;
   }
-  return '';
+  return "";
 }
 
 function getProfileNpub(profile) {

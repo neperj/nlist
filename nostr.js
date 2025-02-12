@@ -5,7 +5,7 @@ class NostrService {
 
   async connect() {
     if (!this.relay) {
-      this.relay = await window.NostrTools.Relay.connect('wss://nos.lol');
+      this.relay = await window.NostrTools.Relay.connect("wss://nos.lol");
       console.log(`connected to ${this.relay.url}`);
     }
     return this.relay;
@@ -15,25 +15,28 @@ class NostrService {
     const relay = await this.connect();
     return new Promise((resolve) => {
       const listings = [];
-  
-      relay.subscribe([
+
+      relay.subscribe(
+        [
+          {
+            kinds: [30402],
+            "#t": [tag],
+          },
+        ],
         {
-          kinds: [30402],
-          '#t': [tag]
-        }
-      ], {
-        onevent(event) {
-          console.log(event);
-          listings.push(event);
-          if (listings.length >= limit) {
-            relay.close();
+          onevent(event) {
+            console.log(event);
+            listings.push(event);
+            if (listings.length >= limit) {
+              relay.close();
+              resolve(listings);
+            }
+          },
+          oneose() {
             resolve(listings);
-          }
-        },
-        oneose() {
-          resolve(listings);
+          },
         }
-      });
+      );
     });
   }
 
@@ -41,24 +44,27 @@ class NostrService {
     const relay = await this.connect();
     return new Promise((resolve) => {
       const listings = [];
-  
-      relay.subscribe([
+
+      relay.subscribe(
+        [
+          {
+            kinds: [30402],
+          },
+        ],
         {
-          kinds: [30402],
-        }
-      ], {
-        onevent(event) {
-          console.log(event);
-          listings.push(event);
-          if (listings.length >= limit) {
-            relay.close();
+          onevent(event) {
+            console.log(event);
+            listings.push(event);
+            if (listings.length >= limit) {
+              relay.close();
+              resolve(listings);
+            }
+          },
+          oneose() {
             resolve(listings);
-          }
-        },
-        oneose() {
-          resolve(listings);
+          },
         }
-      });
+      );
     });
   }
 
@@ -66,53 +72,56 @@ class NostrService {
     const relay = await this.connect();
     return new Promise((resolve) => {
       const listings = [];
-  
-      relay.subscribe([
+
+      relay.subscribe(
+        [
+          {
+            kinds: [30402],
+            authors: [pk],
+          },
+        ],
         {
-          kinds: [30402],
-          authors: [pk],
-        }
-      ], {
-        onevent(event) {
-          console.log(event);
-          listings.push(event);
-          if (listings.length >= limit) {
-            relay.close();
+          onevent(event) {
+            console.log(event);
+            listings.push(event);
+            if (listings.length >= limit) {
+              relay.close();
+              resolve(listings);
+            }
+          },
+          oneose() {
             resolve(listings);
-          }
-        },
-        oneose() {
-          resolve(listings);
+          },
         }
-      });
+      );
     });
   }
 
   async getListing(id) {
     const relay = await this.connect();
     return new Promise((resolve) => {
-      relay.subscribe([
+      relay.subscribe(
+        [
+          {
+            kinds: [30402],
+            ids: [id],
+          },
+        ],
         {
-          kinds: [30402],
-          ids: [id]
+          onevent(event) {
+            console.log(event);
+            relay.close();
+            resolve(event);
+          },
         }
-      ], {
-        onevent(event) {
-          console.log(event);
-          relay.close();
-          resolve(event);
-        }
-      });
+      );
     });
   }
 }
 
-
-
-
 const EventParser = {
   getTagValue(event, tagName) {
-    const tag = event.tags.find(tag => tag[0] === tagName);
+    const tag = event.tags.find((tag) => tag[0] === tagName);
     return tag ? tag[1] : null;
   },
 
@@ -120,20 +129,20 @@ const EventParser = {
     return {
       id: event.id,
       content: event.content,
-      title: this.getTagValue(event, 'title'),
-      images: event.tags.filter(tag => tag[0] === 'image').map(tag => tag[1]),
-      summary: this.getTagValue(event, 'summary'),
-      price: this.getTagValue(event, 'price'),
-      currency: event.tags.find(tag => tag[0] === 'price')?.[2] || 'unknown',
-      frequency: event.tags.find(tag => tag[0] === 'price')?.[3] || ' ',
-      location: this.getTagValue(event, 'location'),
-      shipping: event.tags.find(tag => tag[0] === 'shipping')?.[1] || 'N/A',
-      status: this.getTagValue(event, 'status'),
-      publishedAt: this.getTagValue(event, 'published_at'),
+      title: this.getTagValue(event, "title"),
+      images: event.tags
+        .filter((tag) => tag[0] === "image")
+        .map((tag) => tag[1]),
+      summary: this.getTagValue(event, "summary"),
+      price: this.getTagValue(event, "price"),
+      currency: event.tags.find((tag) => tag[0] === "price")?.[2] || "unknown",
+      frequency: event.tags.find((tag) => tag[0] === "price")?.[3] || " ",
+      location: this.getTagValue(event, "location"),
+      shipping: event.tags.find((tag) => tag[0] === "shipping")?.[1] || "N/A",
+      status: this.getTagValue(event, "status"),
+      publishedAt: this.getTagValue(event, "published_at"),
       editedAt: event.created_at,
-      pubkey: event.pubkey
+      pubkey: event.pubkey,
     };
-  }
+  },
 };
-
-
