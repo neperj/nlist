@@ -1,5 +1,5 @@
-const appTitleElements = document.querySelectorAll('#app-title');
-appTitleElements.forEach(element => {
+const appTitleElements = document.querySelectorAll("#app-title");
+appTitleElements.forEach((element) => {
   element.textContent = config.app_title;
 });
 
@@ -80,3 +80,6 @@ function renderNavLinks() {
     profileLink.removeEventListener("click", () => {}); // Remove any existing listeners
   }
 }
+
+
+setColorPalette();

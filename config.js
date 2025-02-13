@@ -7,6 +7,7 @@ const config = {
       items: [
         { name: "electronics", displayName: "electronics" },
         { name: "Electronics", displayName: "Electronics" },
+        { name: "Digital", displayName: "Digital" },
         { name: "computers", displayName: "Computers" },
         { name: "phones", displayName: "Phones" },
         { name: "gaming", displayName: "Gaming" },
@@ -19,7 +20,8 @@ const config = {
         { name: "sports", displayName: "Sports Equipment" },
         { name: "clothing", displayName: "Clothing" },
         { name: "toys", displayName: "Toys" },
-        { name: "books", displayName: "Books" },
+        { name: "books", displayName: "books" },
+        { name: "Books", displayName: "Books" },
         { name: "music", displayName: "Musical Instruments" },
         { name: "vehicles", displayName: "Vehicles" },
         { name: "realestate", displayName: "Real Estate" },
@@ -47,7 +49,8 @@ const config = {
     {
       title: "Job Market",
       items: [
-        { name: "jobs", displayName: "Jobs" },
+        { name: "jobs", displayName: "jobs" },
+        { name: "Jobs", displayName: "Jobs" },
         { name: "freelance", displayName: "Freelance" },
         { name: "gigs", displayName: "Gigs" },
         { name: "internships", displayName: "Internships" },
@@ -71,7 +74,7 @@ const config = {
         { name: "local", displayName: "Local Services" },
         { name: "lost-found", displayName: "Lost and Found" },
         { name: "rideshare", displayName: "Rideshare" },
-        { name: "pets", displayName: "Pets" },
+        { name: "Pets", displayName: "Pets" },
       ],
     },
     {
@@ -92,18 +95,35 @@ const config = {
     {
       title: "Miscellaneous",
       items: [
-        { name: "general", displayName: "General" },
-        { name: "services", displayName: "Services" },
-        { name: "resale", displayName: "Resale" },
-        { name: "exchange", displayName: "Exchange" },
-        { name: "swap", displayName: "Swap" },
+        { name: "General", displayName: "General" },
+        { name: "Services", displayName: "Services" },
+        { name: "Resale", displayName: "Resale" },
+        { name: "Exchange", displayName: "Exchange" },
+        { name: "Swap", displayName: "Swap" },
         { name: "lessons", displayName: "Lessons" },
         { name: "transportation", displayName: "Transportation" },
         { name: "farm-garden", displayName: "Farm & Garden" },
         { name: "materials", displayName: "Materials" },
-        { name: "wanted", displayName: "Wanted" },
+        { name: "Wanted", displayName: "Wanted" },
         { name: "all", displayName: "ALL TAGS" },
       ],
     },
   ],
+  colorPalette: {
+    text: "#f0e8fc",
+    background: "#040109",
+    primary: "#aa7bef",
+    secondary: "#8d1396",
+    accent: "#e73cd6",
+  },
 };
+
+function setColorPalette() {
+  const root = document.documentElement;
+
+  root.style.setProperty("--text", config.colorPalette.text);
+  root.style.setProperty("--background", config.colorPalette.background);
+  root.style.setProperty("--primary", config.colorPalette.primary);
+  root.style.setProperty("--secondary", config.colorPalette.secondary);
+  root.style.setProperty("--accent", config.colorPalette.accent);
+}
