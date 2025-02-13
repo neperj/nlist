@@ -6,7 +6,7 @@ async function homePageHandler() {
     config.categories.forEach((category) => {
       categoryHTML += `
         <div class="category-column">
-          <h3>${category.title}</h3>
+          <h3>~ ${category.title} ~</h3>
           ${category.items
             .map(
               (item) => `
@@ -21,11 +21,12 @@ async function homePageHandler() {
     mainContent.innerHTML = `
       <div class="home-container">
         <section id="intro-section">
-          <p>Discover curated listings</p>
+          <p id="app-description">${config.app_description}</p>
         </section>
         <div class="cl-categories">${categoryHTML}</div>
       </div>
     `;
+    
 
     const tagButtons = document.querySelectorAll(".tag-button");
 

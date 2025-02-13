@@ -1,3 +1,8 @@
+const appTitleElements = document.querySelectorAll('#app-title');
+appTitleElements.forEach(element => {
+  element.textContent = config.app_title;
+});
+
 const app = {
   isLoggedIn: false,
   myPk: null,

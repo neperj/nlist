@@ -73,7 +73,7 @@ header > .nav-link:hover {
 
 main {
   padding: 1.5rem;
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
   min-height: 80vh;
 }
@@ -154,7 +154,7 @@ button:hover {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: start;
+  align-items: center;
 }
 
 .category-column h3 {
@@ -228,7 +228,8 @@ button:hover {
 .item-details .published-status {
   grid-column: 1 / -1;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: left;
+  gap: 10vw;
   align-items: center;
 }
 
@@ -247,7 +248,8 @@ button:hover {
 .item-details .location-shipping {
   grid-column: 1 / -1;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: left;
+  gap: 10vw;
   align-items: center;
 }
 
