@@ -82,4 +82,3 @@ function renderNavLinks() {
 }
 
 
-setColorPalette();

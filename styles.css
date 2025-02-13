@@ -1,3 +1,11 @@
+:root {
+  --text: #f0e8fc;
+  --background: #040109;
+  --primary: #aa7bef;
+  --secondary: #8d1396;
+  --accent: #e73cd6;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -116,6 +124,25 @@ button:hover {
   margin-bottom: 8px;
 }
 
+.profile-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4vw;
+  margin: 8px;
+}
+
+nostr-name {
+  font-size: 2em;
+  color: rgb(124, 110, 248);
+}
+
+
+nostr-picture::part(img) {
+  width: 120px;
+  border: 4px solid rgb(128, 0, 179);
+  border-radius: 50%;
+}
 /************************************************/
 /******************HomePage******************/
 /************************************************/

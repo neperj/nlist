@@ -8,23 +8,22 @@ const config = {
         { name: "electronics", displayName: "electronics" },
         { name: "Electronics", displayName: "Electronics" },
         { name: "Digital", displayName: "Digital" },
-        { name: "computers", displayName: "Computers" },
-        { name: "phones", displayName: "Phones" },
-        { name: "gaming", displayName: "Gaming" },
-        { name: "accessories", displayName: "Accessories" },
-        { name: "cameras", displayName: "Cameras" },
-        { name: "software", displayName: "Software" },
-        { name: "appliances", displayName: "Appliances" },
-        { name: "furniture", displayName: "Furniture" },
-        { name: "home", displayName: "Home Decor" },
-        { name: "sports", displayName: "Sports Equipment" },
-        { name: "clothing", displayName: "Clothing" },
+        { name: "Computers", displayName: "Computers" },
+        { name: "Phones", displayName: "Phones" },
+        { name: "Gaming", displayName: "Gaming" },
+        { name: "Accessories", displayName: "Accessories" },
+        { name: "Cameras", displayName: "Cameras" },
+        { name: "Software", displayName: "Software" },
+        { name: "Appliances", displayName: "Appliances" },
+        { name: "Furniture", displayName: "Furniture" },
+        { name: "Home", displayName: "Home Decor" },
+        { name: "Sports", displayName: "Sports Equipment" },
+        { name: "Clothing", displayName: "Clothing" },
         { name: "toys", displayName: "Toys" },
         { name: "books", displayName: "books" },
         { name: "Books", displayName: "Books" },
-        { name: "music", displayName: "Musical Instruments" },
-        { name: "vehicles", displayName: "Vehicles" },
-        { name: "realestate", displayName: "Real Estate" },
+        { name: "Vehicles", displayName: "Vehicles" },
+        { name: "Realestate", displayName: "Real Estate" },
       ],
     },
     {
@@ -80,6 +79,7 @@ const config = {
     {
       title: "Health & Fitness",
       items: [
+        { name: "Food", displayName: "Food" },
         { name: "healthcare", displayName: "Healthcare" },
         { name: "fitness", displayName: "Fitness" },
         { name: "wellness", displayName: "Wellness" },
@@ -109,21 +109,4 @@ const config = {
       ],
     },
   ],
-  colorPalette: {
-    text: "#f0e8fc",
-    background: "#040109",
-    primary: "#aa7bef",
-    secondary: "#8d1396",
-    accent: "#e73cd6",
-  },
 };
-
-function setColorPalette() {
-  const root = document.documentElement;
-
-  root.style.setProperty("--text", config.colorPalette.text);
-  root.style.setProperty("--background", config.colorPalette.background);
-  root.style.setProperty("--primary", config.colorPalette.primary);
-  root.style.setProperty("--secondary", config.colorPalette.secondary);
-  root.style.setProperty("--accent", config.colorPalette.accent);
-}

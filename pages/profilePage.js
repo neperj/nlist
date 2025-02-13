@@ -14,14 +14,19 @@ async function profilePageHandler() {
     mainContent.innerHTML = `
       <div class="profile-container">
         ${settingsSection}
-        <h1>${profile}</h1>
-        <h2>${profileNpub}</h2>
+      <div class="profile-card">
+      <nostr-picture></nostr-picture>
+        <nostr-name></nostr-name>
+        
+      </div>
         <div class="profile-details">
           <div id="profile-event-container"></div>
         </div>
       </div>
     `;
 
+    document.querySelector('nostr-name').setAttribute('pubkey', profile);
+    document.querySelector('nostr-picture').setAttribute('pubkey', profile);
     const limit = 100;
     const nostr = new NostrService();
     const listings = await nostr.getNpubListings(limit, profile);
