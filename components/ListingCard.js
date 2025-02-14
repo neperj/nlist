@@ -32,16 +32,14 @@ class ListingCard {
       }
       <p class="summary">${this.listing.summary}</p>
       <div class="item-details">
-        <div class="published-status">
-          <p class="status">Status: ${this.listing.status}</p>
-          <p class="published">Published: ${formatTimestamp(
-            this.listing.publishedAt
-          )}</p>
-        </div>
-        <div class="location-shipping">
+       
+          <p class="status">Status: ${this.listing.status}</p>        
           <p class="location">Location: ${this.listing.location}</p>
           <p class="shipping">Shipping: ${this.listing.shipping}</p>
-        </div>
+                    <p class="published">Published: ${formatTimestamp(
+            this.listing.publishedAt
+          )}</p>
+        
       </div>
     `;
 

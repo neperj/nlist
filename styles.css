@@ -274,7 +274,7 @@ button:hover {
 /************************************************/
 
 .item-card {
-  padding: 0.5rem;
+  padding: 4px;
   margin: 4px;
   border: 1px solid var(--primary);
   display: flex;
@@ -306,40 +306,27 @@ button:hover {
 
 .item-details {
   display: grid;
-  grid-template-columns: 1fr 1fr;
   gap: 0.5rem;
   /*text-align: left;*/
   padding-top: 0.5rem;
   border-top: 1px solid rgba(170, 123, 239, 0.2);
 }
 
-.item-details .published-status {
-  grid-column: 1 / -1;
-  display: flex;
-  justify-content: left;
-  gap: 10vw;
-  align-items: center;
-}
 
-.published-status .published {
+
+.published {
   margin: 4px;
 }
 
 .item-details .price {
   color: var(--accent);
+  word-break: normal;
 }
 
 .item-details .status {
   color: var(--primary);
 }
 
-.item-details .location-shipping {
-  grid-column: 1 / -1;
-  display: flex;
-  justify-content: left;
-  gap: 10vw;
-  align-items: center;
-}
 
 .item-details .location,
 .item-details .shipping {
@@ -401,7 +388,7 @@ button:hover {
 .summary {
   font-size: 0.95rem;
   line-height: 1.5;
-  margin: 0.5rem 0;
+  margin: 16px;
 }
 
 /************************************************/
@@ -550,9 +537,7 @@ footer {
     margin: 0 auto;
   }
 
-  .item-card {
-    padding: 1rem;
-  }
+
 
   .image-thumbnail {
     width: 300px;
