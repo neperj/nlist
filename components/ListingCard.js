@@ -48,6 +48,9 @@ class ListingCard {
     element.addEventListener("click", () => {
       window.location.hash = `#details/${this.listing.id}`;
     });
+    setTimeout(() => {
+      element.classList.add('visible');
+    }, 200 * this.index); 
 
     return element;
   }

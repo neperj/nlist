@@ -27,8 +27,9 @@ async function profilePageHandler() {
     const listings = await nostr.getNpubListings(limit, profile);
 
     const container = document.getElementById("profile-event-container");
-    listings.forEach((event) => {
+    listings.forEach((event, index) => {
       const card = new ListingCard(event);
+      card.index = index;
       container.appendChild(card.render());
     });
   } catch (error) {

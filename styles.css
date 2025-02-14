@@ -10,6 +10,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  
 }
 
 body {
@@ -22,12 +23,13 @@ body {
 }
 
 header {
-  padding: 1.5rem;
+  padding: 16px;
   border-bottom: 1px solid var(--primary);
   display: flex;
   justify-content: space-between;
   align-items: center;
   min-height: 4vh;
+  
 }
 
 header h1 {
@@ -72,11 +74,49 @@ header > .nav-link:hover {
 }
 
 main {
-  padding: 1.5rem;
-  max-width: 1200px;
-  margin: 0 auto;
+  padding: 0;
+  max-width: 99vw;
+  margin: 0;
   min-height: 80vh;
 }
+
+/* General styles */
+.main-container {
+  display: flex;
+  width: 100%;
+  min-height: 77vh;
+}
+
+.sidebar {
+  flex: 1;
+  background-color: var(--background);
+  padding: 4px;
+  border: 1px solid var(--primary);
+}
+
+.main-content {
+  flex: 5;
+  max-width: 80vw;
+  padding: 4px;
+  margin: 2px;
+}
+
+#main {
+  opacity: 0;
+  display: none;
+}
+
+#main.hiding {
+  display: block;
+  opacity: 0;
+}
+
+#main.visible {
+  display: block;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
 
 main > h1 {
   color: var(--primary);
@@ -97,6 +137,25 @@ button {
 
 button:hover {
   background-color: var(--secondary);
+}
+
+@media (max-width: 768px) {
+  .main-container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    order: 1;
+    height: 1px;
+    margin: 0;
+    padding: 0;
+  }
+
+  .main-content {
+    order: 2;
+    max-width: 99vw;
+    min-height: 80vh;
+  }
 }
 
 .price {
@@ -132,20 +191,13 @@ button:hover {
   margin: 8px;
 }
 
-nostr-name {
-  font-size: 2em;
-  color: rgb(124, 110, 248);
-}
-
-
-nostr-picture::part(img) {
-  width: 120px;
-  border: 4px solid rgb(128, 0, 179);
-  border-radius: 50%;
-}
 /************************************************/
 /******************HomePage******************/
 /************************************************/
+#app-description {
+  margin-left: 8px;
+  font-weight: bold;
+}
 
 .home-container button {
   padding: 0;
@@ -221,8 +273,15 @@ nostr-picture::part(img) {
   gap: 0.5rem;
   background: rgba(170, 123, 239, 0.05);
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  opacity: 0;
+  transition: opacity 0.5s ease;
 }
+
+
+.item-card.visible {
+  opacity: 1;
+}
+
 
 .item-card:hover {
   box-shadow: 0 4px 12px #6512ffd0;
@@ -343,7 +402,7 @@ nostr-picture::part(img) {
   display: flex;
   gap: 0.5rem;
   overflow-x: auto;
-  padding: 0.5rem 0;
+  padding: 0.5rem;
 }
 
 .image-large {
@@ -465,12 +524,20 @@ footer {
     font-size: 16px;
   }
 
-  header {
-    padding: 1rem;
-  }
 
   main {
     padding: 1rem;
+  }
+
+  header {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  nav {
+    margin: 0 auto;
   }
 
   .item-card {
@@ -501,14 +568,3 @@ footer {
   }
 }
 
-@media (max-width: 480px) {
-  header {
-    flex-direction: column;
-    gap: 1rem;
-    text-align: center;
-  }
-
-  nav {
-    margin: 0 auto;
-  }
-}

@@ -35,8 +35,15 @@ function handleRoute() {
   const hash = window.location.hash || "#";
   const baseHash = hash.split("/")[0]; // Handle cases like #details/123
   const handler = routes[baseHash] || routes["*"];
+  const mainContent = document.querySelector("#main");
+  mainContent.classList.remove('visible');
+  mainContent.classList.add('hiding');  
   handler();
   window.scrollTo(0, 0);
+  setTimeout(() => {
+    mainContent.classList.remove('hiding');
+    mainContent.classList.add('visible');
+  }, 300);
 }
 
 function updateApp(newState) {
