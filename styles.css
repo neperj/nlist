@@ -90,14 +90,19 @@ main {
 .sidebar {
   flex: 1;
   background-color: var(--background);
-  padding: 4px;
+  padding: 16px;
   border: 1px solid var(--primary);
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  gap: 2px;
 }
 
 .main-content {
   flex: 5;
   max-width: 80vw;
-  padding: 4px;
+  padding: 8px;
   margin: 2px;
 }
 
@@ -149,12 +154,15 @@ button:hover {
     height: 1px;
     margin: 0;
     padding: 0;
+    flex-direction: row;
+    justify-content: center;
   }
 
   .main-content {
     order: 2;
     max-width: 99vw;
     min-height: 80vh;
+    padding: 2px;
   }
 }
 
@@ -230,7 +238,7 @@ button:hover {
 
 .category-column h3 {
   color: var(--primary);
-  margin: 1.5rem 0 0.5rem 0;
+ 
   font-size: 1.2rem;
   text-transform: uppercase;
 }
@@ -267,11 +275,12 @@ button:hover {
 
 .item-card {
   padding: 0.5rem;
+  margin: 4px;
   border: 1px solid var(--primary);
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  background: rgba(170, 123, 239, 0.05);
+  background: var(--background);
   cursor: pointer;
   opacity: 0;
   transition: opacity 0.5s ease;
@@ -284,7 +293,8 @@ button:hover {
 
 
 .item-card:hover {
-  box-shadow: 0 4px 12px #6512ffd0;
+  border: 1px solid var(--accent);
+  box-shadow: var(--text) 0px 1px 3px, var(--accent) 0px 0px 0px 2px;
 }
 
 .item-card h2 {
