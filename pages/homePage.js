@@ -5,6 +5,7 @@ async function homePageHandler() {
 
     config.categories.forEach((category) => {
       categoryHTML += `
+      
         <div class="category-column">
           <h3>~ ${category.title} ~</h3>
           ${category.items
@@ -23,7 +24,9 @@ async function homePageHandler() {
         <section id="intro-section">
           <p id="app-description">${config.app_description}</p>
         </section>
+      <div class="category-column-container">
         <div class="cl-categories">${categoryHTML}</div>
+        </div>
       </div>
     `;
 

@@ -12,8 +12,6 @@ let config = {
         { name: "Phones", displayName: "Phones" },
         { name: "Gaming", displayName: "Gaming" },
         { name: "Accessories", displayName: "Accessories" },
-        { name: "Cameras", displayName: "Cameras" },
-        { name: "Software", displayName: "Software" },
         { name: "Appliances", displayName: "Appliances" },
         { name: "Furniture", displayName: "Furniture" },
         { name: "Home", displayName: "Home Decor" },

@@ -101,6 +101,7 @@ main {
   max-width: 80vw;
   padding: 8px;
   margin: 2px;
+  border: 1px solid var(--primary);
 }
 
 #main {
@@ -199,9 +200,41 @@ button:hover {
 /************************************************/
 /******************HomePage******************/
 /************************************************/
+
 #app-description {
   margin-left: 8px;
   font-weight: bold;
+}
+
+.category-column-container {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+}
+
+.cl-categories {
+ 
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.category-column {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  margin-left: 4px;
+  height: auto;
+  min-width: 25vw;
+}
+
+.category-column h3 {
+  color: var(--background);
+  background-color: var(--secondary);
+  font-size: 1.2rem;
+  margin-top: 8px;
+  text-align: center;
 }
 
 .home-container button {
@@ -212,47 +245,24 @@ button:hover {
   cursor: pointer;
   font-size: 1.1rem;
   font-weight: 500;
-  transition: color 0.2s ease;
+  text-align: left;
 }
 
 .home-container button:hover {
-  color: #e73cd6;
-}
-
-.cl-categories {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  margin: 2rem 0;
-}
-
-.category-column {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-.category-column h3 {
-  color: var(--primary);
-
-  font-size: 1.2rem;
-  text-transform: uppercase;
-}
-
-.category-column h3:first-child {
-  margin-top: 0;
-}
-
-.category-column p {
-  color: var(--text);
-  margin: 0.3rem 0;
-  font-size: 1rem;
-  padding: 0.2rem 0;
-}
-
-.category-column p:hover {
   color: var(--accent);
+  box-shadow: var(--secondary) 0px 1px 3px, var(--secondary) 0px 0px 0px 2px;
+}
+
+@media (max-width: 768px) {
+  .cl-categories {
+    display: flex;
+    flex-direction: column;
+    max-height: fit-content;
+  }
+
+  .category-column-container {
+    align-items: center;
+  }
 }
 
 /************************************************/
@@ -528,6 +538,15 @@ footer {
   height: 6vh;
 }
 
+footer a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+footer a:hover {
+  color: var(--accent);
+}
+
 @media (max-width: 768px) {
   body {
     font-size: 16px;
@@ -561,13 +580,5 @@ footer {
 
   .status {
     text-align: left;
-  }
-
-  .cl-categories {
-    grid-template-columns: 1fr;
-  }
-
-  .category-column h3 {
-    margin-top: 2rem;
   }
 }

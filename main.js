@@ -15,6 +15,7 @@ let routes = {
   "#details": detailsPageHandler,
   "#profile": profilePageHandler,
   "#post": postingPageHandler,
+  "#contact": contactPageHandler,
   "*": () => {
     console.error("Invalid route");
     window.location.hash = "#";
