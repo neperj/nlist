@@ -1,7 +1,7 @@
 async function detailsPageHandler() {
   try {
-    const mainContent = document.querySelector("#main");
-    const id = window.location.hash.split("/")[1];
+    let mainContent = document.querySelector("#main");
+    let id = window.location.hash.split("/")[1];
 
     if (!id) {
       window.location.hash = "#listing";
@@ -10,13 +10,18 @@ async function detailsPageHandler() {
 
     mainContent.innerHTML = "<div>Loading...</div>";
 
-    const nostr = new NostrService();
-    const event = await nostr.getListing(id);
-    const listing = EventParser.parseListingData(event);
+    let nostr = new NostrService();
+    let event = await nostr.getListing(id);
+    let listing = EventParser.parseListingData(event);
 
     mainContent.innerHTML = `
         <div class="details-container">
           <h1>${listing.title}</h1>
+          <div class="price-section">
+            <h2 class="price">Price: ${formatPrice(listing.price)} ${
+      listing.currency
+    } ${listing.frequency}</h2>
+          </div>          
           ${
             listing.images.length > 0
               ? `
@@ -34,11 +39,7 @@ async function detailsPageHandler() {
           `
               : ""
           }
-          <div class="price-section">
-            <h2 class="price">Price: ${formatPrice(listing.price)} ${
-      listing.currency
-    } ${listing.frequency}</h2>
-          </div>
+
           <div class="listing-details">
             <hr/>
             <p>Content:</p>
@@ -62,7 +63,7 @@ async function detailsPageHandler() {
               )}</p>
               
             </div>
-            <button class="seller-profile">Seller's Profile on Nostr</button>
+            <button class="seller-profile">Seller's Profile on Nostr <i class="fa-solid fa-arrow-up-right-from-square"></i></button>
             <button class="seller-listings">All Seller's Listings</button>
             <button id="copyButton">Copy URL</button>
           </div>
@@ -80,7 +81,7 @@ function formatPrice(price) {
 }
 
 function formatDate(timestamp) {
-  const date = new Date(parseInt(timestamp * 1000));
+  let date = new Date(parseInt(timestamp * 1000));
   return date.toLocaleString("en-US", {
     year: "numeric",
     month: "short",
@@ -92,14 +93,14 @@ function formatDate(timestamp) {
 }
 
 function setupEventListeners(listing) {
-  const npub = window.NostrTools.nip19.npubEncode(listing.pubkey);
+  let npub = window.NostrTools.nip19.npubEncode(listing.pubkey);
 
-  const sellerProfileButton = document.querySelector(".seller-profile");
-  const sellerListingsButton = document.querySelector(".seller-listings");
-  const copyButton = document.getElementById("copyButton");
+  let sellerProfileButton = document.querySelector(".seller-profile");
+  let sellerListingsButton = document.querySelector(".seller-listings");
+  let copyButton = document.getElementById("copyButton");
 
   sellerProfileButton.addEventListener("click", () => {
-    const url = `https://njump.me/${npub}`;
+    let url = `https://njump.me/${npub}`;
     window.open(url, "_blank");
   });
 
@@ -124,7 +125,7 @@ function copyToClipboard(text) {
 }
 
 function showCopyAlert() {
-  const alert = document.createElement("div");
+  let alert = document.createElement("div");
   alert.textContent = "Link copied to clipboard!";
   alert.style.position = "fixed";
   alert.style.top = "50%";

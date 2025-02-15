@@ -4,15 +4,15 @@ class ListingCard {
   }
 
   render() {
-    const element = document.createElement("div");
+    let element = document.createElement("div");
     element.className = "item-card";
     element.innerHTML = `
       <div class="title-price">
         <h2 class="title">${this.listing.title}</h2>
-        <h3 class="price">Price: ${formatPrice(this.listing.price)} ${
+        <div class="price"><h3>Price: ${formatPrice(this.listing.price)} ${
       this.listing.currency
     } ${this.listing.frequency}</h3>
-      </div>
+      </div></div>
       ${
         this.listing.images.length > 0
           ? `
@@ -37,8 +37,8 @@ class ListingCard {
           <p class="location">Location: ${this.listing.location}</p>
           <p class="shipping">Shipping: ${this.listing.shipping}</p>
                     <p class="published">Published: ${formatTimestamp(
-            this.listing.publishedAt
-          )}</p>
+                      this.listing.publishedAt
+                    )}</p>
         
       </div>
     `;
@@ -47,8 +47,8 @@ class ListingCard {
       window.location.hash = `#details/${this.listing.id}`;
     });
     setTimeout(() => {
-      element.classList.add('visible');
-    }, 200 * this.index); 
+      element.classList.add("visible");
+    }, 200 * this.index);
 
     return element;
   }
@@ -59,13 +59,13 @@ function formatPrice(price) {
 }
 
 function formatTimestamp(timestamp) {
-  const now = new Date().getTime();
-  const diff = now - timestamp * 1000; // Convert Unix timestamp to milliseconds
+  let now = new Date().getTime();
+  let diff = now - timestamp * 1000; // Convert Unix timestamp to milliseconds
 
-  const seconds = Math.floor(diff / 1000);
-  const minutes = Math.floor(seconds / 60);
-  const hours = Math.floor(minutes / 60);
-  const days = Math.floor(hours / 24);
+  let seconds = Math.floor(diff / 1000);
+  let minutes = Math.floor(seconds / 60);
+  let hours = Math.floor(minutes / 60);
+  let days = Math.floor(hours / 24);
 
   if (seconds < 60) {
     return `${seconds} seconds ago`;

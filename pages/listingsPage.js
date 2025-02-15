@@ -1,7 +1,7 @@
 async function listingsPageHandler() {
   try {
-    const mainContent = document.querySelector("#main");
-    const tag = window.location.hash.split("/")[1];
+    let mainContent = document.querySelector("#main");
+    let tag = window.location.hash.split("/")[1];
 
     if (!tag) {
       window.location.hash = "#";
@@ -16,7 +16,7 @@ async function listingsPageHandler() {
         `;
 
     let limit = 30;
-    const nostr = new NostrService();
+    let nostr = new NostrService();
     let listings;
 
     if (tag === "all") {
@@ -26,9 +26,9 @@ async function listingsPageHandler() {
       listings = await nostr.getListings(limit, tag);
     }
 
-    const container = document.getElementById("event-container");
+    let container = document.getElementById("event-container");
     listings.forEach((event, index) => {
-      const card = new ListingCard(event);
+      let card = new ListingCard(event);
       card.index = index;
       container.appendChild(card.render());
     });

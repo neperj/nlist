@@ -1,4 +1,4 @@
-const config = {
+let config = {
   app_title: "nlist",
   app_description: "Discover curated listings",
   categories: [

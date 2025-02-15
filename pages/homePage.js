@@ -1,6 +1,6 @@
 async function homePageHandler() {
   try {
-    const mainContent = document.querySelector("#main");
+    let mainContent = document.querySelector("#main");
     let categoryHTML = "";
 
     config.categories.forEach((category) => {
@@ -26,18 +26,17 @@ async function homePageHandler() {
         <div class="cl-categories">${categoryHTML}</div>
       </div>
     `;
-    
 
-    const tagButtons = document.querySelectorAll(".tag-button");
+    let tagButtons = document.querySelectorAll(".tag-button");
 
     tagButtons.forEach((button) => {
       button.addEventListener("click", handleTagButtonClick);
     });
 
     function handleTagButtonClick(event) {
-      const target = event.target.getAttribute("data-target");
+      let target = event.target.getAttribute("data-target");
 
-      const url = `#listing/${target}`;
+      let url = `#listing/${target}`;
 
       window.location.href = url;
     }

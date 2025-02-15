@@ -1,15 +1,15 @@
-const appTitleElements = document.querySelectorAll("#app-title");
+let appTitleElements = document.querySelectorAll("#app-title");
 appTitleElements.forEach((element) => {
   element.textContent = config.app_title;
 });
 
-const app = {
+let app = {
   isLoggedIn: false,
   myPk: null,
   myNpub: null,
 };
 
-const routes = {
+let routes = {
   "#": homePageHandler,
   "#listing": listingsPageHandler,
   "#details": detailsPageHandler,
@@ -32,23 +32,23 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function handleRoute() {
-  const hash = window.location.hash || "#";
-  const baseHash = hash.split("/")[0]; // Handle cases like #details/123
-  const handler = routes[baseHash] || routes["*"];
-  const mainContent = document.querySelector("#main");
-  mainContent.classList.remove('visible');
-  mainContent.classList.add('hiding');  
+  let hash = window.location.hash || "#";
+  let baseHash = hash.split("/")[0]; // Handle cases like #details/123
+  let handler = routes[baseHash] || routes["*"];
+  let mainContent = document.querySelector("#main");
+  mainContent.classList.remove("visible");
+  mainContent.classList.add("hiding");
   handler();
   window.scrollTo(0, 0);
   setTimeout(() => {
-    mainContent.classList.remove('hiding');
-    mainContent.classList.add('visible');
+    mainContent.classList.remove("hiding");
+    mainContent.classList.add("visible");
   }, 300);
 }
 
 function updateApp(newState) {
-  Object.assign(app, newState); // Merge new state with existing state
-  renderNavLinks(); // Update UI based on the new state
+  Object.assign(app, newState);
+  renderNavLinks();
 }
 
 function handleNostrLogin() {
@@ -56,7 +56,7 @@ function handleNostrLogin() {
     window.nostr
       .getPublicKey()
       .then((pk) => {
-        const myNpub = window.NostrTools.nip19.npubEncode(pk);
+        let myNpub = window.NostrTools.nip19.npubEncode(pk);
         updateApp({
           isLoggedIn: true,
           myPk: pk,
@@ -75,7 +75,7 @@ function handleNostrLogin() {
 }
 
 function renderNavLinks() {
-  const profileLink = document.getElementById("profileLink");
+  let profileLink = document.getElementById("profileLink");
 
   if (app.isLoggedIn) {
     profileLink.textContent = app.myNpub.slice(0, 9) + "...";
@@ -84,8 +84,6 @@ function renderNavLinks() {
     });
   } else {
     profileLink.textContent = "Log In";
-    profileLink.removeEventListener("click", () => {}); // Remove any existing listeners
+    profileLink.removeEventListener("click", () => {});
   }
 }
-
-

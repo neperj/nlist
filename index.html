@@ -1,47 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <title id="app-title"></title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="favicon.ico">
-    <link rel="stylesheet" href="styles.css" media="print" onload="this.media='all'">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
-<body>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="favicon.ico" />
+    <link
+      rel="stylesheet"
+      href="styles.css"
+      media="print"
+      onload="this.media='all'"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
     <header>
-        <a href="#" class="nav-link" id="app-title"></a>
-        <nav>
-          <a href="#post" class="nav-link" id="postLink">Post</a>
-          <button class="nav-link" id="profileLink">Log In</button>
-        </nav>
-      </header>
-      
-      <main>
-        <div class="main-container">
-          <div class="sidebar">
-            <i class="fa-solid fa-bolt" style="color: #FFD43B;"></i>
-            <i class="fa-solid fa-bolt" style="color: #FFD43B;"></i>
-            <i class="fa-solid fa-bolt" style="color: #FFD43B;"></i>
-            <i class="fa-solid fa-bolt" style="color: #FFD43B;"></i>
-            <i class="fa-solid fa-bolt" style="color: #FFD43B;"></i>
-            <i class="fa-solid fa-bolt" style="color: #FFD43B;"></i>
-            <i class="fa-solid fa-bolt" style="color: #FFD43B;"></i>
-          </div>
-          <div class="main-content" id="main">
-            <!-- Your existing main content will be rendered here -->
-          </div>
+      <a href="#" class="nav-link" id="app-title"></a>
+      <nav>
+        <a href="#post" class="nav-link" id="postLink">Post</a>
+        <button class="nav-link" id="profileLink">Log In</button>
+      </nav>
+    </header>
+
+    <main>
+      <div class="main-container">
+        <div class="sidebar">
+          <i class="fa-solid fa-bolt" style="color: #ffd43b"></i>
+          <i class="fa-solid fa-bolt" style="color: #ffd43b"></i>
+          <i class="fa-solid fa-bolt" style="color: #ffd43b"></i>
+          <i class="fa-solid fa-bolt" style="color: #ffd43b"></i>
+          <i class="fa-solid fa-bolt" style="color: #ffd43b"></i>
+          <i class="fa-solid fa-bolt" style="color: #ffd43b"></i>
+          <i class="fa-solid fa-bolt" style="color: #ffd43b"></i>
         </div>
-      </main>
-      
-      <footer>
-        <p>FAQ - Contact - Github</p>
-      </footer>
-      
-      
+        <div class="main-content" id="main"></div>
+      </div>
+    </main>
 
+    <footer>
+      <p>FAQ - Contact - Github</p>
+    </footer>
 
-    <script src="https://unpkg.com/nostr-tools/lib/nostr.bundle.js" defer></script>
+    <script
+      src="https://unpkg.com/nostr-tools/lib/nostr.bundle.js"
+      defer
+    ></script>
+    <script
+      src="https://unpkg.com/nostr-web-components/dist/nostr-name.js"
+      defer
+    ></script>
+    <script
+      src="https://unpkg.com/nostr-web-components/dist/nostr-picture.js"
+      defer
+    ></script>
     <script src="nostr.js" defer></script>
     <script src="config.js" defer></script>
     <script src="components/ListingCard.js" defer></script>
@@ -51,5 +68,5 @@
     <script src="pages/detailsPage.js" defer></script>
     <script src="pages/profilePage.js" defer></script>
     <script src="main.js" defer></script>
-</body>
+  </body>
 </html>

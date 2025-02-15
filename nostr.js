@@ -12,9 +12,9 @@ class NostrService {
   }
 
   async getListings(limit, tag) {
-    const relay = await this.connect();
+    let relay = await this.connect();
     return new Promise((resolve) => {
-      const listings = [];
+      let listings = [];
 
       relay.subscribe(
         [
@@ -41,9 +41,9 @@ class NostrService {
   }
 
   async getAllListings(limit) {
-    const relay = await this.connect();
+    let relay = await this.connect();
     return new Promise((resolve) => {
-      const listings = [];
+      let listings = [];
 
       relay.subscribe(
         [
@@ -69,9 +69,9 @@ class NostrService {
   }
 
   async getNpubListings(limit, pk) {
-    const relay = await this.connect();
+    let relay = await this.connect();
     return new Promise((resolve) => {
-      const listings = [];
+      let listings = [];
 
       relay.subscribe(
         [
@@ -98,7 +98,7 @@ class NostrService {
   }
 
   async getListing(id) {
-    const relay = await this.connect();
+    let relay = await this.connect();
     return new Promise((resolve) => {
       relay.subscribe(
         [
@@ -119,9 +119,9 @@ class NostrService {
   }
 }
 
-const EventParser = {
+let EventParser = {
   getTagValue(event, tagName) {
-    const tag = event.tags.find((tag) => tag[0] === tagName);
+    let tag = event.tags.find((tag) => tag[0] === tagName);
     return tag ? tag[1] : null;
   },
 

@@ -1,36 +1,51 @@
 async function profilePageHandler() {
   try {
-    const mainContent = document.querySelector("#main");
-    const profile = window.location.hash.split("/")[1];
+    let mainContent = document.querySelector("#main");
+    let profile = window.location.hash.split("/")[1];
 
     if (!profile) {
       window.location.hash = "#";
       return;
     }
 
-    const settingsSection = getSettingsSection(profile);
-    const profileNpub = getProfileNpub(profile);
+    let settingsSection = getSettingsSection(profile);
+    let profileNpub = getProfileNpub(profile);
 
     mainContent.innerHTML = `
       <div class="profile-container">
         ${settingsSection}
-        <h1>${profile}</h1>
-        <h2>${profileNpub}</h2>
+      <div class="profile-card">
+      <div class="nostr-picture-container">
+      <nostr-picture></nostr-picture>
+      </div>
+        <nostr-name></nostr-name>
+        <button class="seller-profile">Seller's Profile on Nostr <i class="fa-solid fa-arrow-up-right-from-square"></i></button>
+      </div>
+        
+       <!--<h1>${profile}</h1>
+        <h2>${profileNpub}</h2>-->
         <div class="profile-details">
           <div id="profile-event-container"></div>
         </div>
       </div>
     `;
+    document.querySelector("nostr-name").setAttribute("pubkey", profile);
+    document.querySelector("nostr-picture").setAttribute("pubkey", profile);
+    let limit = 100;
+    let nostr = new NostrService();
+    let listings = await nostr.getNpubListings(limit, profile);
 
-    const limit = 100;
-    const nostr = new NostrService();
-    const listings = await nostr.getNpubListings(limit, profile);
-
-    const container = document.getElementById("profile-event-container");
+    let container = document.getElementById("profile-event-container");
     listings.forEach((event, index) => {
-      const card = new ListingCard(event);
+      let card = new ListingCard(event);
       card.index = index;
       container.appendChild(card.render());
+    });
+
+    let sellerProfileButton = document.querySelector(".seller-profile");
+    sellerProfileButton.addEventListener("click", () => {
+      let url = `https://njump.me/${profileNpub}`;
+      window.open(url, "_blank");
     });
   } catch (error) {
     console.error("Error rendering profile page:", error);

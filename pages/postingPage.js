@@ -1,6 +1,6 @@
 async function postingPageHandler() {
   try {
-    const mainContent = document.querySelector("#main");
+    let mainContent = document.querySelector("#main");
     mainContent.innerHTML = `
         <div class="posting-container">
           <h1>Post</h1>
@@ -33,25 +33,25 @@ async function postingPageHandler() {
           </div>
         </div>
       `;
-    const postForm = document.getElementById("post-form");
+    let postForm = document.getElementById("post-form");
     postForm.addEventListener("submit", async (event) => {
       event.preventDefault();
 
-      const kind = 30402;
-      const createdAt = 1675642635;
-      const content =
+      let kind = 30402;
+      let createdAt = 1675642635;
+      let content =
         "Lorem [ipsum] dolor risva pafficia deserunt Read zkjurnw4ksz9thwden5te0wfjk0k0h36rhpdtd594my40w9pkal876jxgrqsqqqa28pccpzu.";
-      const title = "Lorem Ipsum";
-      const summary = "More lorem ipsum that is a little more than the title";
-      const price = "100";
-      const currency = "USD";
-      const frequency = "Hour";
-      const location = "NYC";
-      const tTag = "electronics";
-      const pubkey = "...";
-      const sig = "...";
+      let title = "Lorem Ipsum";
+      let summary = "More lorem ipsum that is a little more than the title";
+      let price = "100";
+      let currency = "USD";
+      let frequency = "Hour";
+      let location = "NYC";
+      let tTag = "electronics";
+      let pubkey = "...";
+      let sig = "...";
 
-      const eventTemplate = {
+      let eventTemplate = {
         kind,
         created_at: createdAt,
         content,
@@ -81,7 +81,7 @@ async function postingPageHandler() {
 
       console.log(eventTemplate);
       // Finalize the event and send it
-      // const signedEvent = finalizeEvent(eventTemplate, sk);
+      // let signedEvent = finalizeEvent(eventTemplate, sk);
       // Add your logic to send the signed event
     });
   } catch (error) {
