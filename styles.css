@@ -216,8 +216,11 @@ button:hover {
 .cl-categories {
  
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
+  min-width: 79vw;
+  max-width: 80vw;
+  max-height: 80vh;
 }
 
 .category-column {
@@ -226,7 +229,7 @@ button:hover {
   align-items: start;
   margin-left: 4px;
   height: auto;
-  min-width: 25vw;
+  
 }
 
 .category-column h3 {
