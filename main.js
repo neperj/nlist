@@ -27,7 +27,6 @@ document.addEventListener("DOMContentLoaded", () => {
   handleRoute();
   window.addEventListener("hashchange", handleRoute);
 
-  // Check for Nostr extension and attempt to log in on page load
   window.addEventListener("load", () => {
     setTimeout(handleNostrLogin, 1000);
   });
@@ -35,13 +34,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function handleRoute() {
   let hash = window.location.hash || "#";
-  let baseHash = hash.split("/")[0]; // Handle cases like #details/123
+  let baseHash = hash.split("/")[0];
   let handler = routes[baseHash] || routes["*"];
   let mainContent = document.querySelector("#main");
   mainContent.classList.remove("visible");
   mainContent.classList.add("hiding");
 
-  // Update the currentPage in the app object
   updateApp({ currentPage: baseHash.slice(1) });
 
   handler();
@@ -55,7 +53,7 @@ function handleRoute() {
 function updateApp(newState) {
   Object.assign(app, newState);
   renderNavLinks();
-  toggleElementVisibility(); // Call the function to update the element's visibility
+  toggleElementVisibility();
 }
 
 function handleNostrLogin() {

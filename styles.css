@@ -534,12 +534,15 @@ nostr-picture::part(img) {
 
 .posting-container {
   padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .post-details {
   background-color: var(--background);
-  padding: 20px;
-  border-radius: 5px;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 #post-form {
@@ -548,15 +551,29 @@ nostr-picture::part(img) {
   gap: 20px;
 }
 
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
 #post-form textarea,
 #post-form input,
 #post-form select {
-  padding: 10px;
+  padding: 12px;
   border: 1px solid var(--accent);
-  border-radius: 4px;
-  background-color: var(--primary);
+  border-radius: 6px;
+  background-color: var(--background);
   color: var(--text);
   font-size: 1rem;
+  transition: border-color 0.2s ease;
+}
+
+#post-form textarea:focus,
+#post-form input:focus,
+#post-form select:focus {
+  outline: none;
+  border-color: var(--primary);
 }
 
 #post-form select {
@@ -565,9 +582,9 @@ nostr-picture::part(img) {
   -moz-appearance: none;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
-  background-position: right 10px center;
+  background-position: right 12px center;
   background-size: 24px;
-  padding-right: 30px;
+  padding-right: 36px;
 }
 
 #post-form label {
@@ -575,19 +592,36 @@ nostr-picture::part(img) {
   color: var(--primary);
 }
 
+.price-input {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.price-input > * {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+#post-form .price-input select {
+  flex: 0 0 auto;
+  width: auto;
+}
+
+
 #post-form button {
-  background-color: var(--accent);
+  background-color: var(--primary);
   color: var(--background);
   border: none;
-  border-radius: 4px;
-  padding: 10px 20px;
+  border-radius: 6px;
+  padding: 12px 24px;
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.2s ease;
 }
 
 #post-form button:hover {
-  background-color: #d13ac4;
+  background-color: var(--secondary);
 }
 
 @media (max-width: 912px) {
@@ -596,9 +630,10 @@ nostr-picture::part(img) {
   }
 
   .post-details {
-    padding: 10px;
+    padding: 20px;
   }
 }
+
 
 /************************************************/
 /************************************************/

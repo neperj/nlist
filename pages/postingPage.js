@@ -2,54 +2,96 @@ async function postingPageHandler() {
   try {
     let mainContent = document.querySelector("#main");
     mainContent.innerHTML = `
-        <div class="posting-container">
-          <h1>Post</h1>
-          <div class="post-details">
-            <h2>My Listing Form</h2>
-            <div id="my-post">
-              <form id="post-form">
-                <p>create a listing</p>
-                <label for="tags">Choose a tag:</label>
-                <select id="tags">
-                  ${config.categories
-                    .map(
-                      (category) => `
-                    <optgroup label="${category.title}">
-                      ${category.items
-                        .map(
-                          (item) => `
-                        <option value="${item.name}">${item.displayName}</option>
-                      `
-                        )
-                        .join("")}
-                    </optgroup>
-                  `
-                    )
-                    .join("")}
-                </select>
-                <button type="submit">Prints dummy k-30402</button>
-              </form>
+      <div class="posting-container">
+        <h1>Post a Listing</h1>
+        <div class="post-details">
+          <form id="post-form">
+            <div class="form-group">
+              <label for="tags">Choose a Category:</label>
+              <select id="tags" required>
+                ${config.categories
+                  .map(
+                    (category) => `
+                  <optgroup label="${category.title}">
+                    ${category.items
+                      .map(
+                        (item) => `
+                      <option value="${item.name}">${item.displayName}</option>
+                    `
+                      )
+                      .join("")}
+                  </optgroup>
+                `
+                  )
+                  .join("")}
+              </select>
             </div>
-          </div>
+            <div class="form-group">
+              <label for="title">Title:</label>
+              <input type="text" id="title" placeholder="Enter a title for your listing" required>
+            </div>
+            <div class="form-group">
+              <label for="content">Description:</label>
+              <textarea id="content" placeholder="Describe your item or service" required></textarea>
+            </div>
+            <div class="form-group">
+              <label for="summary">Summary:</label>
+              <textarea id="summary" placeholder="Describe your item or service" required></textarea>
+            </div>            
+            <div class="form-group">
+              <label for="price">Price:</label>
+              <div class="price-input">
+                <input type="number" id="price" placeholder="Enter a price">
+                <select id="currency">
+                  <option value="">Select Currency</option>
+                  <option value="SATS">SATS</option>
+                  <option value="USD">USD</option>
+                  <option value="EUR">EUR</option>
+                  <option value="GBP">GBP</option>
+                </select>
+                <select id="frequency">
+                  <option value="">Select Frequency</option>
+                  <option value="hour">Hourly</option>
+                  <option value="day">Daily</option>
+                  <option value="month">Monthly</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+            <label for="location">Location:</label>
+            <input type="text" id="location" placeholder="Enter a location">
+            </div>
+            <button type="submit">Post Listing</button>
+          </form>
         </div>
-      `;
+      </div>
+    `;
     let postForm = document.getElementById("post-form");
+    let imageInput = document.createElement("input");
+    imageInput.type = "text";
+    imageInput.id = "image-input";
+    imageInput.placeholder = "Enter image URLs separated by space";
+
+    postForm.insertBefore(imageInput, postForm.lastElementChild);
+
     postForm.addEventListener("submit", async (event) => {
       event.preventDefault();
 
       let kind = 30402;
-      let createdAt = 1675642635;
-      let content =
-        "Lorem [ipsum] dolor risva pafficia deserunt Read zkjurnw4ksz9thwden5te0wfjk0k0h36rhpdtd594my40w9pkal876jxgrqsqqqa28pccpzu.";
-      let title = "Lorem Ipsum";
-      let summary = "More lorem ipsum that is a little more than the title";
-      let price = "100";
-      let currency = "USD";
-      let frequency = "Hour";
-      let location = "NYC";
-      let tTag = "electronics";
+      let createdAt = Math.floor(Date.now() / 1000);
+      let content = document.getElementById("content").value;
+      let summary = document.getElementById("summary").value;
+      let title = document.getElementById("title").value;
+      let price = document.getElementById("price").value || "0";
+      let currency = document.getElementById("currency").value || "SATS";
+      let frequency = document.getElementById("frequency").value || "hour";
+      let location = document.getElementById("location").value;
+      let tTag = document.getElementById("tags").value;
       let pubkey = "...";
       let sig = "...";
+
+      let imageUrls = document.getElementById("image-input").value.trim().split(/\s+/);
+      let imageTags = imageUrls.map((url) => ["image", url,]);
 
       let eventTemplate = {
         kind,
@@ -58,9 +100,9 @@ async function postingPageHandler() {
         tags: [
           ["d", "lorem-ipsum"],
           ["title", title],
-          ["published_at", "1296962229"],
+          ["published_at", createdAt.toString()],
           ["t", tTag],
-          ["image", "https://url.to.img", "256x256"],
+          ...imageTags,
           ["summary", summary],
           ["location", location],
           ["price", price, currency, frequency],
@@ -80,9 +122,6 @@ async function postingPageHandler() {
       };
 
       console.log(eventTemplate);
-      // Finalize the event and send it
-      // let signedEvent = finalizeEvent(eventTemplate, sk);
-      // Add your logic to send the signed event
     });
   } catch (error) {
     console.error("Error rendering posting page:", error);
