@@ -7,6 +7,7 @@ let app = {
   isLoggedIn: false,
   myPk: null,
   myNpub: null,
+  currentPage: null,
 };
 
 let routes = {
@@ -39,6 +40,10 @@ function handleRoute() {
   let mainContent = document.querySelector("#main");
   mainContent.classList.remove("visible");
   mainContent.classList.add("hiding");
+
+  // Update the currentPage in the app object
+  updateApp({ currentPage: baseHash.slice(1) });
+
   handler();
   window.scrollTo(0, 0);
   setTimeout(() => {
@@ -50,6 +55,7 @@ function handleRoute() {
 function updateApp(newState) {
   Object.assign(app, newState);
   renderNavLinks();
+  toggleElementVisibility(); // Call the function to update the element's visibility
 }
 
 function handleNostrLogin() {
@@ -88,3 +94,32 @@ function renderNavLinks() {
     profileLink.removeEventListener("click", () => {});
   }
 }
+
+function toggleElementVisibility() {
+  let searchElement = document.querySelector(".sidebar-search");
+  if (
+    app.currentPage === "home" ||
+    app.currentPage === "" ||
+    app.currentPage === "listing"
+  ) {
+    searchElement.classList.add("visible");
+  } else {
+    searchElement.classList.remove("visible");
+  }
+}
+
+let searchForm = document.querySelector(".search-form");
+searchForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  let searchInput = searchForm.querySelector("input[type='text']");
+  let searchTag = searchInput.value.trim();
+
+  if (searchTag !== "") {
+    let url = `#listing/${searchTag}`;
+    window.location.href = url;
+
+    searchInput.value = "";
+  } else {
+    console.log("Please enter a search tag.");
+  }
+});

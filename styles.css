@@ -89,6 +89,7 @@ main {
   background-color: var(--background);
   padding: 16px;
   border: 1px solid var(--primary);
+  border-top: none;
   display: flex;
   flex-direction: column;
   justify-content: start;
@@ -96,12 +97,53 @@ main {
   gap: 2px;
 }
 
+.sidebar-search {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.sidebar-search.visible {
+  position: static;
+  visibility: visible;
+  opacity: 1;
+}
+
+.search-form {
+  display: flex;
+  flex-direction: row;
+}
+
+.search-form input[type="text"] {
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid var(--secondary);
+
+  width: 80%;
+  background: var(--primary);
+}
+
+.search-form button {
+  padding: 10px;
+  background: var(--primary);
+  color: var(--background);
+  font-size: 17px;
+  border: 1px solid var(--secondary);
+  border-left: none;
+  cursor: pointer;
+}
+
+.search-form button:hover {
+  background: var(--accent);
+}
+
 .main-content {
   flex: 5;
   max-width: 80vw;
   padding: 8px;
   margin: 2px;
-  border: 1px solid var(--primary);
+  border: 1px solid var(--secondary);
 }
 
 #main {
@@ -141,7 +183,12 @@ button:hover {
   background-color: var(--secondary);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 912px) {
+  header {
+    padding: 0;
+    margin: 0;
+  }
+
   .main-container {
     flex-direction: column;
   }
@@ -151,8 +198,9 @@ button:hover {
     height: 1px;
     margin: 0;
     padding: 0;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
   }
 
   .main-content {
@@ -201,6 +249,10 @@ button:hover {
 /******************HomePage******************/
 /************************************************/
 
+.home-container {
+  display: block;
+}
+
 #app-description {
   margin-left: 8px;
   font-weight: bold;
@@ -214,7 +266,6 @@ button:hover {
 }
 
 .cl-categories {
- 
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -229,7 +280,6 @@ button:hover {
   align-items: start;
   margin-left: 4px;
   height: auto;
-  
 }
 
 .category-column h3 {
@@ -256,15 +306,26 @@ button:hover {
   box-shadow: var(--secondary) 0px 1px 3px, var(--secondary) 0px 0px 0px 2px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 912px) {
   .cl-categories {
     display: flex;
     flex-direction: column;
+
     max-height: fit-content;
   }
 
   .category-column-container {
     align-items: center;
+  }
+
+  .category-column h3 {
+    margin-top: 16px;
+    margin-bottom: 8px;
+  }
+
+  .home-container button {
+    text-align: center;
+    margin-left: 32px;
   }
 }
 
@@ -452,7 +513,7 @@ nostr-picture::part(img) {
   border-radius: 50%;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 912px) {
   .profile-card {
     flex-direction: column;
   }
@@ -520,7 +581,7 @@ nostr-picture::part(img) {
   background-color: #d13ac4;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 912px) {
   .posting-container {
     padding: 10px;
   }
@@ -537,7 +598,7 @@ footer {
   padding: 4px;
   text-align: center;
   border-top: 1px solid var(--primary);
-  margin-top: 2rem;
+  margin: 2px;
   height: 6vh;
 }
 
@@ -550,7 +611,7 @@ footer a:hover {
   color: var(--accent);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 912px) {
   body {
     font-size: 16px;
   }
