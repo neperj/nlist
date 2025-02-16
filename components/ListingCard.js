@@ -7,12 +7,15 @@ class ListingCard {
     let element = document.createElement("div");
     element.className = "item-card";
     element.innerHTML = `
-      <div class="title-price">
-        <h2 class="title">${this.listing.title}</h2>
+      <div class="status-price">
+        <p class="status">Status: ${this.listing.status}</p> 
         <div class="price"><h3>Price: ${formatPrice(this.listing.price)} ${
       this.listing.currency
     } ${this.listing.frequency}</h3>
       </div></div>
+      <h2 class="title">${this.listing.title}</h2>
+      <hr class="solid">
+
       ${
         this.listing.images.length > 0
           ? `
@@ -33,7 +36,7 @@ class ListingCard {
       <p class="summary">${this.listing.summary}</p>
       <div class="item-details">
        
-          <p class="status">Status: ${this.listing.status}</p>        
+                 
           <p class="location">Location: ${this.listing.location}</p>
           <p class="shipping">Shipping: ${this.listing.shipping}</p>
                     <p class="published">Published: ${formatTimestamp(

@@ -183,6 +183,49 @@ button:hover {
   background-color: var(--secondary);
 }
 
+
+.price {
+  background-color: var(--secondary);
+  color: var(--background);
+  width: fit-content;
+}
+
+.location,
+.shipping {
+  color: var(--text);
+  opacity: 0.9;
+  margin: 4px;
+}
+
+.status {
+  color: var(--primary);
+  font-style: italic;
+  
+}
+
+.published {
+  color: var(--text);
+  opacity: 0.7;
+  font-size: 0.9rem;
+  grid-column: 1 / -1;
+  margin-bottom: 8px;
+}
+
+.profile-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4vw;
+  margin: 8px;
+}
+
+hr.solid {
+  border-top: 1px solid var(--primary);
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+
 @media (max-width: 912px) {
   header {
     padding: 0;
@@ -209,40 +252,6 @@ button:hover {
     min-height: 80vh;
     padding: 2px;
   }
-}
-
-.price {
-  background-color: var(--secondary);
-  color: var(--background);
-  width: fit-content;
-}
-
-.location,
-.shipping {
-  color: var(--text);
-  opacity: 0.9;
-  margin: 4px;
-}
-
-.status {
-  color: var(--primary);
-  margin: 4px;
-}
-
-.published {
-  color: var(--text);
-  opacity: 0.7;
-  font-size: 0.9rem;
-  grid-column: 1 / -1;
-  margin-bottom: 8px;
-}
-
-.profile-card {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 4vw;
-  margin: 8px;
 }
 
 /************************************************/
@@ -373,17 +382,17 @@ button:hover {
   word-break: keep-all;
 }
 
-.title-price {
+.status-price {
   display: flex;
   justify-content: space-between;
   align-items: start;
 }
 
-.title-price .title {
+.status-price .title {
   flex: auto;
 }
 
-.title-price .price {
+.status-price .price {
   min-width: fit-content;
 }
 
