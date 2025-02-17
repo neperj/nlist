@@ -263,7 +263,7 @@ hr.solid {
 }
 
 #app-description {
-  margin-left: 8px;
+  margin-left: 4px;
   font-weight: bold;
 }
 
@@ -324,11 +324,12 @@ hr.solid {
   }
 
   .category-column-container {
-    align-items: center;
+    align-items: start;
   }
 
   .category-column h3 {
     margin-top: 16px;
+    margin-left: 8px;
     margin-bottom: 8px;
   }
 
@@ -569,11 +570,31 @@ nostr-picture::part(img) {
   transition: border-color 0.2s ease;
 }
 
+#post-form textarea {
+  resize: vertical;
+  min-height: 100px;
+ 
+}
+
+
 #post-form textarea:focus,
 #post-form input:focus,
 #post-form select:focus {
   outline: none;
   border-color: var(--primary);
+}
+
+/* Hide the inner spinner */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+    appearance: textfield;
 }
 
 #post-form select {
@@ -606,6 +627,12 @@ nostr-picture::part(img) {
 #post-form .price-input select {
   flex: 0 0 auto;
   width: auto;
+}
+
+.image-input-helper {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-top: 4px;
 }
 
 
