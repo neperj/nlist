@@ -55,7 +55,7 @@ function handleRoute() {
 function updateApp(newState) {
   Object.assign(app, newState);
   renderNavLinks();
-  toggleElementVisibility();
+  toggleSearchVisibility();
 }
 
 function handleNostrLogin() {
@@ -95,7 +95,7 @@ function renderNavLinks() {
   }
 }
 
-function toggleElementVisibility() {
+function toggleSearchVisibility() {
   let searchElement = document.querySelector(".sidebar-search");
   if (
     app.currentPage === "home" ||
@@ -127,7 +127,6 @@ searchForm.addEventListener("submit", async (event) => {
 const toggleThemeButton = document.getElementById("toggleTheme");
 const body = document.documentElement;
 
-// Check the stored theme when the page loads
 if (app.theme === "light") {
   body.classList.add("light-theme");
   toggleThemeButton.textContent = "🌙";
@@ -139,12 +138,12 @@ if (app.theme === "light") {
 toggleThemeButton.addEventListener("click", () => {
   body.classList.toggle("light-theme");
   if (body.classList.contains("light-theme")) {
-    app.theme = "light"; // Update the theme in the app object
-    localStorage.setItem("theme", "light"); // Store the theme in localStorage
+    app.theme = "light";
+    localStorage.setItem("theme", "light");
     toggleThemeButton.textContent = "🌙";
   } else {
-    app.theme = "dark"; // Update the theme in the app object
-    localStorage.setItem("theme", "dark"); // Store the theme in localStorage
+    app.theme = "dark";
+    localStorage.setItem("theme", "dark");
     toggleThemeButton.textContent = "☀️";
   }
 });
