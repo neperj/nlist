@@ -6,6 +6,14 @@
   --accent: #e73cd6;
 }
 
+:root.light-theme {
+  --text: #040109;
+  --background: #f0e8fc;
+  --primary: #000;
+  --secondary: #8d1396;
+  --accent: #e73cd6;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -33,6 +41,19 @@ header {
 header h1 {
   margin: 0;
   font-size: 1.5rem;
+}
+
+header > div {
+  display: flex;
+  flex-direction: row;
+}
+
+#toggleTheme {
+  border: none;
+}
+
+#postLink {
+  margin-right: 4px;
 }
 
 nav {
@@ -119,15 +140,15 @@ main {
   padding: 10px;
   font-size: 17px;
   border: 1px solid var(--secondary);
-
+  color: var(--text);
   width: 80%;
-  background: var(--primary);
+  background: var(--background);
 }
 
 .search-form button {
   padding: 10px;
-  background: var(--primary);
-  color: var(--background);
+  background: var(--background);
+  color: var(--text);
   font-size: 17px;
   border: 1px solid var(--secondary);
   border-left: none;
@@ -135,7 +156,7 @@ main {
 }
 
 .search-form button:hover {
-  background: var(--accent);
+  background: var(--secondary);
 }
 
 .main-content {
@@ -170,9 +191,9 @@ main > h1 {
 button {
   padding: 0.75rem 1.25rem;
   margin: 4px;
-  background: var(--primary);
-  color: var(--background);
-  border: none;
+  background: var(--background);
+  color: var(--text);
+  border: 1px solid var(--secondary);
   cursor: pointer;
   border-radius: 4px;
   font-weight: 500;
@@ -182,7 +203,6 @@ button {
 button:hover {
   background-color: var(--secondary);
 }
-
 
 .price {
   background-color: var(--secondary);
@@ -200,7 +220,6 @@ button:hover {
 .status {
   color: var(--primary);
   font-style: italic;
-  
 }
 
 .published {
@@ -225,8 +244,35 @@ hr.solid {
   margin-right: 2px;
 }
 
+@media (max-width: 800px) {
+  header {
+    padding: 0;
+    margin: 0;
+  }
 
-@media (max-width: 912px) {
+  .main-container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    order: 1;
+    height: 1px;
+    margin: 0;
+    padding: 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .main-content {
+    order: 2;
+    max-width: 99vw;
+    min-height: 80vh;
+    padding: 2px;
+  }
+}
+
+@media (max-width: 1200px) {
   header {
     padding: 0;
     margin: 0;
@@ -315,7 +361,7 @@ hr.solid {
   box-shadow: var(--secondary) 0px 1px 3px, var(--secondary) 0px 0px 0px 2px;
 }
 
-@media (max-width: 912px) {
+@media (max-width: 800px) {
   .cl-categories {
     display: flex;
     flex-direction: column;
@@ -523,7 +569,7 @@ nostr-picture::part(img) {
   border-radius: 50%;
 }
 
-@media (max-width: 912px) {
+@media (max-width: 800px) {
   .profile-card {
     flex-direction: column;
   }
@@ -573,9 +619,7 @@ nostr-picture::part(img) {
 #post-form textarea {
   resize: vertical;
   min-height: 100px;
- 
 }
-
 
 #post-form textarea:focus,
 #post-form input:focus,
@@ -585,16 +629,16 @@ nostr-picture::part(img) {
 }
 
 /* Hide the inner spinner */
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 /* Firefox */
-input[type=number] {
-    -moz-appearance: textfield;
-    appearance: textfield;
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
 }
 
 #post-form select {
@@ -635,7 +679,6 @@ input[type=number] {
   margin-top: 4px;
 }
 
-
 #post-form button {
   background-color: var(--primary);
   color: var(--background);
@@ -651,7 +694,7 @@ input[type=number] {
   background-color: var(--secondary);
 }
 
-@media (max-width: 912px) {
+@media (max-width: 800px) {
   .posting-container {
     padding: 10px;
   }
@@ -660,7 +703,6 @@ input[type=number] {
     padding: 20px;
   }
 }
-
 
 /************************************************/
 /************************************************/
@@ -682,24 +724,17 @@ footer a:hover {
   color: var(--accent);
 }
 
-@media (max-width: 912px) {
+@media (max-width: 800px) {
   body {
     font-size: 16px;
   }
 
   main {
-    padding: 1rem;
-  }
-
-  header {
-    flex-direction: column;
-    gap: 1rem;
-    padding: 1rem;
-    text-align: center;
+    padding: 4px;
   }
 
   nav {
-    margin: 0 auto;
+    margin-right: 2px;
   }
 
   .image-thumbnail {

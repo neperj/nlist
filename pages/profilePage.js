@@ -19,7 +19,7 @@ async function profilePageHandler() {
       <nostr-picture></nostr-picture>
       </div>
         <nostr-name></nostr-name>
-        <button class="seller-profile">Profile on Nostr <i class="fa-solid fa-arrow-up-right-from-square"></i></button>
+        <button class="seller-profile">Profile on Nostr 🚀</button>
       </div>
         
        <!--<h1>${profile}</h1>

@@ -63,7 +63,7 @@ async function detailsPageHandler() {
               )}</p>
               
             </div>
-            <button class="seller-profile">Seller's Profile on Nostr <i class="fa-solid fa-arrow-up-right-from-square"></i></button>
+            <button class="seller-profile">Seller's Profile on Nostr 🚀</button>
             <button class="seller-listings">All Seller's Listings</button>
             <button id="copyButton">Copy URL</button>
           </div>

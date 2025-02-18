@@ -82,7 +82,7 @@ async function postingPageHandler() {
               </div>
             </div>
          
-            <button type="submit">Post Listing</button>
+            <button type="submit">Post (WIP)</button>
           </form>
         </div>
       </div>

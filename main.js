@@ -1,14 +1,15 @@
-let appTitleElements = document.querySelectorAll("#app-title");
-appTitleElements.forEach((element) => {
-  element.textContent = config.app_title;
-});
-
 let app = {
   isLoggedIn: false,
   myPk: null,
   myNpub: null,
   currentPage: null,
+  theme: localStorage.getItem("theme") || "dark",
 };
+
+let appTitleElements = document.querySelectorAll("#app-title");
+appTitleElements.forEach((element) => {
+  element.textContent = config.app_title;
+});
 
 let routes = {
   "#": homePageHandler,
@@ -120,5 +121,30 @@ searchForm.addEventListener("submit", async (event) => {
     searchInput.value = "";
   } else {
     console.log("Please enter a search tag.");
+  }
+});
+
+const toggleThemeButton = document.getElementById("toggleTheme");
+const body = document.documentElement;
+
+// Check the stored theme when the page loads
+if (app.theme === "light") {
+  body.classList.add("light-theme");
+  toggleThemeButton.textContent = "🌙";
+} else {
+  body.classList.remove("light-theme");
+  toggleThemeButton.textContent = "☀️";
+}
+
+toggleThemeButton.addEventListener("click", () => {
+  body.classList.toggle("light-theme");
+  if (body.classList.contains("light-theme")) {
+    app.theme = "light"; // Update the theme in the app object
+    localStorage.setItem("theme", "light"); // Store the theme in localStorage
+    toggleThemeButton.textContent = "🌙";
+  } else {
+    app.theme = "dark"; // Update the theme in the app object
+    localStorage.setItem("theme", "dark"); // Store the theme in localStorage
+    toggleThemeButton.textContent = "☀️";
   }
 });

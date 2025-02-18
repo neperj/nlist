@@ -1,7 +1,7 @@
 async function contactPageHandler() {
-    try {
-      let mainContent = document.querySelector("#main");
-      mainContent.innerHTML = `
+  try {
+    let mainContent = document.querySelector("#main");
+    mainContent.innerHTML = `
           <div class="contacting-container">
             <h1>Contact Us</h1>
             <div class="contact-details">
@@ -15,14 +15,12 @@ async function contactPageHandler() {
             </div>
           </div>
         `;
-      let postForm = document.getElementById("contact-form");
-      postForm.addEventListener("submit", async (event) => {
-        event.preventDefault();  
-        console.log("thanks for contacting us!");
-
-      });
-    } catch (error) {
-      console.error("Error rendering contact us page:", error);
-    }
+    let postForm = document.getElementById("contact-form");
+    postForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      console.log("thanks for contacting us!");
+    });
+  } catch (error) {
+    console.error("Error rendering contact us page:", error);
   }
-  
+}
