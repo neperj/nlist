@@ -8,9 +8,11 @@ async function listingsPageHandler() {
       return;
     }
 
+    let cleanTag = new DOMParser().parseFromString(tag, 'text/html').documentElement.textContent;
+
     mainContent.innerHTML = `
             <div class="listings-container">
-                <h1>${tag}</h1>
+                <h1>${cleanTag}</h1>
                 <div id="event-container"></div>
             </div>
         `;
