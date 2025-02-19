@@ -49,7 +49,7 @@ async function postingPageHandler() {
 
             <div class="form-group">
               <label for="summary">Summary:</label>
-              <textarea id="summary" placeholder="Describe your item or service" required></textarea>
+              <textarea id="summary" placeholder="Summary of your item or service" required></textarea>
             </div>            
             <div class="form-group">
               <label for="price">Price:</label>
@@ -58,6 +58,7 @@ async function postingPageHandler() {
                 <select id="currency">
                   <option value="">Select Currency</option>
                   <option value="SATS">SATS</option>
+                  <option value="SATS">BTC</option>
                   <option value="USD">USD</option>
                   <option value="EUR">EUR</option>
                   <option value="GBP">GBP</option>
@@ -81,6 +82,8 @@ async function postingPageHandler() {
                 <p>Enter the URLs of the images you want to upload, separated by spaces.</p>
               </div>
             </div>
+            <div id="field-container"></div>
+            <button type="button" id="add-field">Add Field</button>
          
             <button type="submit">console.log</button>
           </form>
@@ -89,17 +92,19 @@ async function postingPageHandler() {
     `;
     let postForm = document.getElementById("post-form");
     let tagsSelect = document.getElementById("tags");
+
     let customCategoryGroup = document.getElementById("custom-category-group");
     let customCategoryCheckbox = document.getElementById(
       "custom-category-checkbox"
     );
-
     customCategoryCheckbox.addEventListener("change", () => {
       if (customCategoryCheckbox.checked) {
         tagsSelect.disabled = true;
+        tagsSelect.style.opacity = "0.5";
         customCategoryGroup.style.display = "block";
       } else {
         tagsSelect.disabled = false;
+        tagsSelect.style.opacity = "1";
         customCategoryGroup.style.display = "none";
       }
     });
@@ -109,10 +114,66 @@ async function postingPageHandler() {
       this.rows = this.value.split("\n").length;
     });
 
-    let imageInput = document.getElementById("image-input");
-    imageInput.addEventListener("input", function () {
-      this.rows = this.value.split("\n").length;
-    });
+    function validateImageInput() {
+      const imageInput = document.getElementById("image-input");
+      const imageUrls = imageInput.value.trim().split(/\s+/);
+
+      // Check if the field is empty (optional)
+      if (imageUrls.length === 1 && imageUrls[0] === "") {
+        // The field is empty, so you can proceed with the form submission
+        console.log("Image input field is empty, submitting form...");
+        let imageTags = [];
+        return { imageUrls, imageTags, isValid: true };
+      }
+
+      // Validate each image URL
+      let validImageUrls = [];
+      let imageTags = [];
+      let isValid = true;
+      for (const url of imageUrls) {
+        if (isValidImageUrl(url)) {
+          validImageUrls.push(url);
+          imageTags.push(["image", url]);
+        } else {
+          alert(`Invalid image URL: ${url}`);
+          isValid = false;
+        }
+      }
+
+      // Return the valid image URLs, image tags, and a flag indicating if all URLs are valid
+      return { imageUrls: validImageUrls, imageTags, isValid };
+    }
+
+    function isValidImageUrl(url) {
+      // Use a regular expression to check if the URL has a common image file extension
+      const imageExtensions = /\.(jpg|jpeg|png|gif|bmp|svg)$/i;
+      return imageExtensions.test(url);
+    }
+
+    let fieldContainer = document.getElementById("field-container");
+    let addFieldButton = document.getElementById("add-field");
+    addFieldButton.addEventListener("click", addField);
+    function addField() {
+      let newField = document.createElement("div");
+      newField.classList.add("form-group");
+      newField.dataset.index = fieldContainer.children.length;
+
+      newField.innerHTML = `
+        <label for="custom-field-name-${newField.dataset.index}">Custom Field Name:</label>
+        <input type="text" id="custom-field-name-${newField.dataset.index}" placeholder="Enter a custom field name">
+        <label for="custom-field-value-${newField.dataset.index}">Custom Field Value:</label>
+        <input type="text" id="custom-field-value-${newField.dataset.index}" placeholder="Enter a custom field value">
+        <button type="button" class="remove-field">Remove</button>
+      `;
+      let removeButton = newField.querySelector(".remove-field");
+      removeButton.addEventListener("click", () => removeField(newField));
+
+      fieldContainer.appendChild(newField);
+    }
+
+    function removeField(field) {
+      field.remove();
+    }
 
     postForm.addEventListener("submit", async (event) => {
       event.preventDefault();
@@ -124,7 +185,7 @@ async function postingPageHandler() {
       let title = document.getElementById("title").value;
       let price = document.getElementById("price").value || " ";
       let currency = document.getElementById("currency").value || " ";
-      let frequency = document.getElementById("frequency").value || "null";
+      let frequency = document.getElementById("frequency").value || " ";
       let location = document.getElementById("location").value || "earth";
 
       let tTag = customCategoryCheckbox.checked
@@ -133,11 +194,26 @@ async function postingPageHandler() {
       let pubkey = "...";
       let sig = "...";
 
-      let imageUrls = document
-        .getElementById("image-input")
-        .value.trim()
-        .split(/\s+/);
-      let imageTags = imageUrls.map((url) => ["image", url]);
+      // Validate image input
+      let { imageUrls, imageTags, isValid } = validateImageInput();
+      if (!isValid) {
+        // Do not submit the form, as there are invalid image URLs
+        console.log("Please fix the invalid image URLs and try again.");
+        return;
+      }
+
+      console.log("Image URLs:", imageUrls);
+      console.log("Image tags:", imageTags);
+
+      let customFields = Array.from(fieldContainer.children).map((field) => {
+        let name = field
+          .querySelector(`#custom-field-name-${field.dataset.index}`)
+          .value.trim();
+        let value = field
+          .querySelector(`#custom-field-value-${field.dataset.index}`)
+          .value.trim();
+        return [name, value];
+      });
 
       let eventTemplate = {
         kind,
@@ -162,6 +238,7 @@ async function postingPageHandler() {
             "30023:a695f6b60119d9521934a691347d9f78e8770b56da16bb255ee286ddf9fda919:ipsum",
             "wss://relay.nostr.org",
           ],
+          ...customFields,
         ],
         pubkey,
         sig,
