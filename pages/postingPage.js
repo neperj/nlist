@@ -7,7 +7,7 @@ async function postingPageHandler() {
         <div class="post-details">
           <form id="post-form">
             <div class="form-group">
-              <label for="tags">Choose a Category:</label>
+              <label for="tags">Category</label>
               <div class="category-select">
                 <select id="tags" required>
                   ${config.categories
@@ -33,26 +33,26 @@ async function postingPageHandler() {
               </div>
             </div>
             <div class="form-group" id="custom-category-group" style="display: none;">
-              <label for="custom-category">Custom Category:</label>
+              <label for="custom-category">Custom Category</label>
               <input type="text" id="custom-category" placeholder="Enter a custom category">
             </div>
 
             <div class="form-group">
-              <label for="title">Title:</label>
+              <label for="title">Title*</label>
               <input type="text" id="title" placeholder="Enter a title for your listing" required>
             </div>
             <div class="form-group">
-              <label for="content">Description:</label>
+              <label for="content">Description*</label>
               <textarea id="content" placeholder="Describe your item or service" required></textarea>
             </div>
 
 
             <div class="form-group">
-              <label for="summary">Summary:</label>
+              <label for="summary">Summary*</label>
               <textarea id="summary" placeholder="Summary of your item or service" required></textarea>
             </div>            
             <div class="form-group">
-              <label for="price">Price:</label>
+              <label for="price">Price</label>
               <div class="price-input">
                 <input type="number" id="price" placeholder="Enter a price">
                 <select id="currency">
@@ -72,11 +72,11 @@ async function postingPageHandler() {
               </div>
             </div>
             <div class="form-group">
-            <label for="location">Location:</label>
+            <label for="location">Location</label>
             <input type="text" id="location" placeholder="Enter a location">
             </div>
             <div class="form-group">
-              <label for="image-input">Images:</label>
+              <label for="image-input">Images</label>
               <textarea id="image-input" placeholder="Enter image URLs separated by space"></textarea>
               <div class="image-input-helper">
                 <p>Enter the URLs of the images you want to upload, separated by spaces.</p>
@@ -141,7 +141,7 @@ async function postingPageHandler() {
       }
 
       // Return the valid image URLs, image tags, and a flag indicating if all URLs are valid
-      return { imageUrls: validImageUrls, imageTags, isValid };
+      return { imageTags, isValid };
     }
 
     function isValidImageUrl(url) {
@@ -159,9 +159,9 @@ async function postingPageHandler() {
       newField.dataset.index = fieldContainer.children.length;
 
       newField.innerHTML = `
-        <label for="custom-field-name-${newField.dataset.index}">Custom Field Name:</label>
+        <label for="custom-field-name-${newField.dataset.index}">Field Name</label>
         <input type="text" id="custom-field-name-${newField.dataset.index}" placeholder="Enter a custom field name">
-        <label for="custom-field-value-${newField.dataset.index}">Custom Field Value:</label>
+        <label for="custom-field-value-${newField.dataset.index}">Value</label>
         <input type="text" id="custom-field-value-${newField.dataset.index}" placeholder="Enter a custom field value">
         <button type="button" class="remove-field">Remove</button>
       `;
@@ -189,21 +189,21 @@ async function postingPageHandler() {
       let location = document.getElementById("location").value || "earth";
 
       let tTag = customCategoryCheckbox.checked
-        ? document.getElementById("custom-category").value
-        : document.getElementById("tags").value;
+        ? document.getElementById("custom-category").value || "noTag"
+        : document.getElementById("tags").value || "nil";
+
       let pubkey = "...";
       let sig = "...";
 
       // Validate image input
-      let { imageUrls, imageTags, isValid } = validateImageInput();
+      let { imageTags, isValid } = validateImageInput();
       if (!isValid) {
-        // Do not submit the form, as there are invalid image URLs
         console.log("Please fix the invalid image URLs and try again.");
         return;
       }
 
-      console.log("Image URLs:", imageUrls);
-      console.log("Image tags:", imageTags);
+      //console.log("Image URLs:", imageUrls);
+      //console.log("Image tags:", imageTags);
 
       let customFields = Array.from(fieldContainer.children).map((field) => {
         let name = field

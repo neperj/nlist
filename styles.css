@@ -381,7 +381,7 @@ hr.solid {
 
   .home-container button {
     text-align: center;
-    margin-left: 32px;
+    margin-left: 48px;
   }
 }
 
@@ -444,24 +444,46 @@ hr.solid {
 }
 
 .item-details {
-  display: grid;
-  gap: 0.5rem;
-  padding-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   border-top: 1px solid rgba(170, 123, 239, 0.2);
 }
 
-.published {
-  margin: 4px;
+.item-details .published {
+  margin: 0;
 }
 
 .item-details .status {
   color: var(--primary);
 }
 
+.location-shipping {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: start;
+  margin: 8px;
+}
+
 .item-details .location,
 .item-details .shipping {
   color: var(--text);
   opacity: 0.9;
+}
+
+.item-details .location {
+  margin-right: 32px;
+}
+
+.item-details .shipping {
+  margin-left: 32px;
+}
+
+.separator-locship {
+  text-align: end;
+  font-size: larger;
+  font-weight: bolder;
 }
 
 .item-card .summary {
@@ -687,7 +709,6 @@ input[type="number"] {
   margin: 16px;
   padding: 16px;
   border: 1px solid var(--primary);
-
 }
 
 #field-container button {
