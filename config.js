@@ -105,3 +105,9 @@ let config = {
     },
   ],
 };
+
+
+// if you want to use a public relay and still only see your specific tags,
+// we will make a communityTag that if exists will make all names rendered as communityTag_Tag
+// can be done manually now
+// ?should then have the config data as pure JSON? and then generate this object

@@ -9,7 +9,7 @@ class ListingCard {
     element.innerHTML = `
       <div class="status-price">
         <p class="status">Status: ${this.listing.status}</p> 
-        <div class="price"><h3>Price: ${formatPrice(this.listing.price)} ${
+        <div class="price"><h3>${formatPrice(this.listing.price)} ${
       this.listing.currency
     } ${this.listing.frequency}</h3>
       </div></div>

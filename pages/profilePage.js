@@ -18,7 +18,7 @@ async function profilePageHandler() {
       <div class="nostr-picture-container">
       <nostr-picture></nostr-picture>
       </div>
-        <nostr-name></nostr-name>
+        <nostr-name class="sellerName"></nostr-name>
         <button class="seller-profile">Profile on Nostr 🚀</button>
       </div>
         
@@ -29,7 +29,7 @@ async function profilePageHandler() {
         </div>
       </div>
     `;
-    document.querySelector("nostr-name").setAttribute("pubkey", profile);
+    document.querySelector(".sellerName").setAttribute("pubkey", profile);
     document.querySelector("nostr-picture").setAttribute("pubkey", profile);
     let limit = 100;
     let nostr = new NostrService();

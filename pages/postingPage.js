@@ -65,7 +65,7 @@ async function postingPageHandler() {
                 </select>
                 <select id="frequency">
                   <option value="">Select Frequency</option>
-                  <option value=" ">none</option>
+                  <option value=" ">one-time</option>
                   <option value="hour">Hourly</option>
                   <option value="day">Daily</option>
                   <option value="month">Monthly</option>

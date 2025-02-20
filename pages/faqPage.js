@@ -8,8 +8,8 @@ async function faqPageHandler() {
         <div class="faq-item">
           <h3>what is nlist?</h3>
           <p>
-            it is a decentralized classified listings app built on the nostr
-            protocol. it allows anyone to easily create and customize their own
+            it is a decentralized classified listings app on the nostr
+            protocol. built as a template that anyone can easily clone, customize and have their own
             classified listings website for their community.
           </p>
         </div>

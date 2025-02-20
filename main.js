@@ -54,7 +54,7 @@ function handleRoute() {
 
 function updateApp(newState) {
   Object.assign(app, newState);
-  renderNavLinks();
+
   toggleSearchVisibility();
 }
 
@@ -70,6 +70,7 @@ function handleNostrLogin() {
           myNpub: myNpub,
         });
         console.log("Logged in as:", myNpub);
+        renderNavLinks();
       })
       .catch((err) => {
         console.error("Error getting public key:", err);
@@ -85,7 +86,10 @@ function renderNavLinks() {
   let profileLink = document.getElementById("profileLink");
 
   if (app.isLoggedIn) {
-    profileLink.textContent = app.myNpub.slice(0, 9) + "...";
+    //profileLink.textContent = app.myNpub.slice(0, 9) + "...";
+    profileLink.innerHTML = '<nostr-name class="myName"></nostr-name>';
+    document.querySelector(".myName").setAttribute("pubkey", app.myPk);
+
     profileLink.addEventListener("click", () => {
       window.location.hash = `#profile/${app.myPk}`;
     });
@@ -129,7 +133,7 @@ const body = document.documentElement;
 
 if (app.theme === "light") {
   body.classList.add("light-theme");
-  toggleThemeButton.textContent = "🌙";
+  toggleThemeButton.textContent = "🌒";
 } else {
   body.classList.remove("light-theme");
   toggleThemeButton.textContent = "☀️";
@@ -140,7 +144,7 @@ toggleThemeButton.addEventListener("click", () => {
   if (body.classList.contains("light-theme")) {
     app.theme = "light";
     localStorage.setItem("theme", "light");
-    toggleThemeButton.textContent = "🌙";
+    toggleThemeButton.textContent = "🌒";
   } else {
     app.theme = "dark";
     localStorage.setItem("theme", "dark");
