@@ -740,6 +740,27 @@ input[type="number"] {
 }
 
 /************************************************/
+.faq-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+}
+
+.faq-section {
+  margin: 16px;
+}
+
+.faq-item {
+  border-bottom: 1px solid #ccc;
+  padding: 1rem 0;
+}
+
+.faq-item h3 {
+  margin-bottom: 0.5rem;
+}
+
+/************************************************/
 /************************************************/
 
 footer {

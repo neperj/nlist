@@ -58,13 +58,14 @@ async function postingPageHandler() {
                 <select id="currency">
                   <option value="">Select Currency</option>
                   <option value="SATS">SATS</option>
-                  <option value="SATS">BTC</option>
+                  <option value="BTC">BTC</option>
                   <option value="USD">USD</option>
                   <option value="EUR">EUR</option>
                   <option value="GBP">GBP</option>
                 </select>
                 <select id="frequency">
                   <option value="">Select Frequency</option>
+                  <option value=" ">none</option>
                   <option value="hour">Hourly</option>
                   <option value="day">Daily</option>
                   <option value="month">Monthly</option>
@@ -192,8 +193,8 @@ async function postingPageHandler() {
         ? document.getElementById("custom-category").value || "noTag"
         : document.getElementById("tags").value || "nil";
 
-      let pubkey = "...";
-      let sig = "...";
+      //let pubkey = "...";
+      //let sig = "...";
 
       // Validate image input
       let { imageTags, isValid } = validateImageInput();
@@ -228,25 +229,53 @@ async function postingPageHandler() {
           ["summary", summary],
           ["location", location],
           ["price", price, currency, frequency],
-          [
-            "e",
-            "b3e392b11f5d4f28321cedd09303a748acfd0487aea5a7450b3481c60b6e4f87",
-            "wss://relay.example.com",
-          ],
-          [
-            "a",
-            "30023:a695f6b60119d9521934a691347d9f78e8770b56da16bb255ee286ddf9fda919:ipsum",
-            "wss://relay.nostr.org",
-          ],
+          //[
+          //  "e",
+          //  "b3e392b11f5d4f28321cedd09303a748acfd0487aea5a7450b3481c60b6e4f87",
+          //  "wss://relay.example.com",
+          //],
+          //[
+          //  "a",
+          //  "30023:a695f6b60119d9521934a691347d9f78e8770b56da16bb255ee286ddf9fda919:ipsum",
+          //  "wss://relay.nostr.org",
+          //],
           ...customFields,
         ],
-        pubkey,
-        sig,
+        //  pubkey,
+        //  sig,
       };
+      let finalevent = eventExtenstionSign(eventTemplate);
+      finalevent
+        .then((event) => {
+          console.log(event);
 
-      console.log(eventTemplate);
+          setTimeout(() => {
+            let isGood = window.NostrTools.verifyEvent(event);
+            console.log(isGood);
+          }, 300);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
     });
   } catch (error) {
     console.error("Error rendering posting page:", error);
+  }
+}
+
+function eventExtenstionSign(eventTemplate) {
+  if (typeof window.nostr !== "undefined" && app.myNpub !== null) {
+    return window.nostr
+      .signEvent(eventTemplate)
+      .then((finalizedEvent) => {
+        return finalizedEvent;
+      })
+      .catch((err) => {
+        console.error("Error signing event:", err);
+        throw err;
+      });
+  } else {
+    console.error("are you logged in?");
+    return Promise.reject("are you logged in?");
   }
 }
