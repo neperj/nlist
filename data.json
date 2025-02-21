@@ -4,10 +4,10 @@
   "appTag": "",
   "categories": [
     {
-      "title": "for sale",
+      "title": "for sale <img src='https://cdn3.emoji.gg/emojis/61703-throwingmoney.gif' width='36px' height='36px' alt='throwingmoney'>",
       "items": [
         { "name": "bitcoin", "displayName": "$$$" },
-        { "name": "electronics", "displayName": "electronics" },
+        { "name": "electronics", "displayName": "electronics " },
         { "name": "Electronics", "displayName": "Electronics 💻" },
         { "name": "Digital", "displayName": "Digital" },
         { "name": "Accessories", "displayName": "Accessories" },
@@ -28,7 +28,7 @@
       ]
     },
     {
-      "title": "jobs",
+      "title": "jobs <img src='https://cdn3.emoji.gg/emojis/76595-money-mouth.gif' width='36px' height='36px' alt='money-mouth'>",
       "items": [
         { "name": "job", "displayName": "job" },
         { "name": "bounties", "displayName": "bounties 🎯" },
@@ -62,7 +62,7 @@
       ]
     },
     {
-      "title": "services",
+      "title": "services <img src='https://cdn3.emoji.gg/emojis/3307_pepe_sunglasses.gif' width='36px' height='36px' alt='pepe_sunglasses'>",
       "items": [
         { "name": "automotive", "displayName": "automotive" },
         { "name": "beauty", "displayName": "beauty" },
@@ -89,13 +89,13 @@
       ]
     },
     {
-      "title": "misc.",
+      "title": "misc.  <img src='https://cdn3.emoji.gg/emojis/7235_pepe_hamburger.gif' width='48px' height='48px' alt='pepe_hamburger'/>",
       "items": [
         { "name": "all", "displayName": "EVERYTHING" },
         { "name": "gaming", "displayName": "🎮 gaming 🎮" },
         { "name": "Food", "displayName": "Food" },
         { "name": "food", "displayName": "food" },
-        { "name": "food", "displayName": "food" },
+        { "name": "food", "displayName": "food   <img src='https://cdn3.emoji.gg/emojis/7954-pepe-shots.gif' width='36px' height='36px' alt='pepe-shots'>" },
         { "name": "food", "displayName": "food 🍔" },
         { "name": "food", "displayName": "food" },
         { "name": "gift", "displayName": "gift" },

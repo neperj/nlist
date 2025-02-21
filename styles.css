@@ -39,6 +39,7 @@ header {
   min-height: 4vh;
 }
 
+
 header > div {
   display: flex;
   flex-direction: row;
@@ -56,6 +57,12 @@ header > div {
 
 #postLink {
   margin-right: 4px;
+}
+
+header #app-title {
+  color: var(--primary);
+  font-size: 32px;
+  font-weight: bolder;
 }
 
 header .nav-link {
@@ -341,7 +348,9 @@ hr.solid {
     display: flex;
     flex-direction: column;
     justify-content: start;
-    width: fit-content;
+    width: 100%;
+    max-width: 90vw;
+    height: auto;
   }
 
   .category-column-container {
@@ -764,7 +773,7 @@ input[type="number"] {
 }
 
 .faq-item {
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid var(--text);
   padding: 1rem 0;
 }
 
