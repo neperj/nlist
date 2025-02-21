@@ -122,6 +122,181 @@ class NostrService {
   }
 }
 
+//class NostrService {
+//  constructor() {
+//    this.relayUrls = ["wss://nos.lol", "wss://relay.damus.io", "wss://relay.nostr.band"];
+//    this.relays = [];
+//    this.seenEvents = new Set();
+//  }
+//
+//  async connect(relayUrl) {
+//    const relay = await window.NostrTools.Relay.connect(relayUrl);
+//    this.relays.push(relay);
+//    console.log(`connected to ${relay.url}`);
+//    return relay;
+//  }
+//
+//  async getListings(limit, tag) {
+//    const listings = [];
+//    for (const relayUrl of this.relayUrls) {
+//      const relay = await this.connect(relayUrl);
+//      await this.fetchListings(relay, limit, tag, listings);
+//      if (listings.length >= limit) {
+//        break;
+//      }
+//    }
+//    return listings.slice(0, limit);
+//  }
+//
+//  async fetchListings(relay, limit, tag, listings) {
+//    return new Promise((resolve) => {
+//      relay.subscribe(
+//        [
+//          {
+//            kinds: [30402],
+//            "#t": [tag],
+//          },
+//        ],
+//        {
+//          onevent: (event) => {
+//            if (!this.seenEvents.has(event.id)) {
+//              console.log(event);
+//              this.seenEvents.add(event.id);
+//              listings.push(event);
+//              if (listings.length >= limit) {
+//                relay.close();
+//                resolve();
+//              }
+//            }
+//          },
+//          oneose: () => {
+//            relay.close();
+//            resolve();
+//          },
+//        }
+//      );
+//    });
+//  }
+//
+//  async getAllListings(limit) {
+//    const listings = [];
+//    for (const relayUrl of this.relayUrls) {
+//      const relay = await this.connect(relayUrl);
+//      await this.fetchAllListings(relay, limit, listings);
+//      if (listings.length >= limit) {
+//        break;
+//      }
+//    }
+//    return listings.slice(0, limit);
+//  }
+//
+//  async fetchAllListings(relay, limit, listings) {
+//    return new Promise((resolve) => {
+//      relay.subscribe(
+//        [
+//          {
+//            kinds: [30402],
+//          },
+//        ],
+//        {
+//          onevent: (event) => {
+//            if (!this.seenEvents.has(event.id)) {
+//              console.log(event);
+//              this.seenEvents.add(event.id);
+//              listings.push(event);
+//              if (listings.length >= limit) {
+//                relay.close();
+//                resolve();
+//              }
+//            }
+//          },
+//          oneose: () => {
+//            relay.close();
+//            resolve();
+//          },
+//        }
+//      );
+//    });
+//  }
+//
+//  async getNpubListings(limit, pk) {
+//    const listings = [];
+//    for (const relayUrl of this.relayUrls) {
+//      const relay = await this.connect(relayUrl);
+//      await this.fetchNpubListings(relay, limit, pk, listings);
+//      if (listings.length >= limit) {
+//        break;
+//      }
+//    }
+//    return listings.slice(0, limit);
+//  }
+//  async fetchNpubListings(relay, limit, pk, listings) {
+//    return new Promise((resolve) => {
+//      relay.subscribe(
+//        [
+//          {
+//            kinds: [30402],
+//            authors: [pk],
+//          },
+//        ],
+//        {
+//          onevent: (event) => {
+//            if (!this.seenEvents.has(event.id)) {
+//              console.log(event);
+//              this.seenEvents.add(event.id);
+//              listings.push(event);
+//              if (listings.length >= limit) {
+//                relay.close();
+//                resolve();
+//              }
+//            }
+//          },
+//          oneose: () => {
+//            relay.close();
+//            resolve();
+//          },
+//        }
+//      );
+//    });
+//  }
+//  
+//  async getListing(id) {
+//    for (const relayUrl of this.relayUrls) {
+//      const relay = await this.connect(relayUrl);
+//      const event = await this.fetchListing(relay, id);
+//      if (event) {
+//        return event;
+//      }
+//    }
+//    return null;
+//  }
+//  
+//  async fetchListing(relay, id) {
+//    return new Promise((resolve) => {
+//      relay.subscribe(
+//        [
+//          {
+//            kinds: [30402],
+//            ids: [id],
+//          },
+//        ],
+//        {
+//          onevent: (event) => {
+//            if (!this.seenEvents.has(event.id)) {
+//              console.log(event);
+//              this.seenEvents.add(event.id);
+//              relay.close();
+//              resolve(event);
+//            }
+//          },
+//        }
+//      );
+//    });
+//  }
+//  
+//}
+
+
 let EventParser = {
   getTagValue(event, tagName) {
     let tag = event.tags.find((tag) => tag[0] === tagName);

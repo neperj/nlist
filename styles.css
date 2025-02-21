@@ -173,6 +173,7 @@ main {
 #main {
   opacity: 0;
   display: none;
+  max-width: 80vw;
 }
 
 #main.hiding {
@@ -252,6 +253,10 @@ hr.solid {
 @media (max-width: 1200px) {
   .main-container {
     flex-direction: column;
+  }
+
+  #main {
+    max-width: none;
   }
 
   .sidebar {
