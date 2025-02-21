@@ -33,6 +33,7 @@ class NostrService {
             }
           },
           oneose() {
+            relay.close();
             resolve(listings);
           },
         }
@@ -61,6 +62,7 @@ class NostrService {
             }
           },
           oneose() {
+            relay.close();
             resolve(listings);
           },
         }
@@ -90,6 +92,7 @@ class NostrService {
             }
           },
           oneose() {
+            relay.close();
             resolve(listings);
           },
         }

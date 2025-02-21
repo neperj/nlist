@@ -13,11 +13,17 @@ async function postingPageHandler() {
                   ${config.categories
                     .map(
                       (category) => `
-                    <optgroup label="${category.title}">
+                    <optgroup label="${category.title.replace(
+                      /(<([^>]+)>)/gi,
+                      ""
+                    )}">
                       ${category.items
                         .map(
                           (item) => `
-                        <option value="${item.name}">${item.displayName}</option>
+                        <option value="${item.name}">${item.displayName.replace(
+                            /(<([^>]+)>)/gi,
+                            ""
+                          )}</option>
                       `
                         )
                         .join("")}
@@ -26,6 +32,7 @@ async function postingPageHandler() {
                     )
                     .join("")}
                 </select>
+
                 <div class="custom-category-checkbox">
                   <input type="checkbox" id="custom-category-checkbox">
                   <label for="custom-category-checkbox">Custom Category</label>

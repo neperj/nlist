@@ -164,7 +164,7 @@ main {
 
 .main-content {
   flex: 5;
-  max-width: 80vw;
+  
   padding: 8px;
   margin: 2px;
   border: 1px solid var(--secondary);
@@ -221,17 +221,31 @@ hr.solid {
   margin-right: 2px;
 }
 
-@media (max-width: 890px) {
-  header .nav-link {
-    text-decoration: none;
-    color: var(--text);
-    font-size: 24px;
-    font-weight: bold;
-    padding: 0;
+
+
+@media (max-width: 885px) {
+  header {
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    min-height: auto;
   }
 
-  header .nav-link:hover {
-    color: var(--primary);
+  header > div {
+    margin: 4px;
+  }
+
+  #postLink {
+    margin-right: 8px;
+  }
+
+  header .nav-link {
+    font-size: 18px;
+    padding: 4px 8px;
+  }
+
+  header .myName {
+    font-size: 20px;
+    padding: 4px 8px;
   }
 }
 
@@ -252,8 +266,7 @@ hr.solid {
 
   .main-content {
     order: 2;
-    max-width: 99vw;
-    min-height: 80vh;
+
     padding: 2px;
   }
 }
@@ -319,7 +332,7 @@ hr.solid {
   box-shadow: var(--secondary) 0px 1px 3px, var(--secondary) 0px 0px 0px 2px;
 }
 
-@media (max-width: 890px) {
+@media (max-width: 885px) {
   .cl-categories {
     display: flex;
     flex-direction: column;
@@ -614,7 +627,7 @@ nostr-picture::part(img) {
   border-radius: 50%;
 }
 
-@media (max-width: 890px) {
+@media (max-width: 885px) {
   .profile-card {
     flex-direction: column;
   }
@@ -626,7 +639,7 @@ nostr-picture::part(img) {
 
 .posting-container {
   padding: 20px;
-  max-width: 890px;
+  max-width: 885px;
   margin: 0 auto;
 }
 
@@ -748,7 +761,7 @@ input[type="number"] {
   background-color: var(--secondary);
 }
 
-@media (max-width: 890px) {
+@media (max-width: 885px) {
   .posting-container {
     padding: 10px;
   }
@@ -801,7 +814,7 @@ footer a:hover {
   color: var(--accent);
 }
 
-@media (max-width: 890px) {
+@media (max-width: 885px) {
   body {
     font-size: 16px;
   }
