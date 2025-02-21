@@ -412,6 +412,7 @@ hr.solid {
   background-color: var(--text);
   color: var(--background);
   width: fit-content;
+  font-style: normal;
 }
 
 .status-price .status {
