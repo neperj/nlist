@@ -259,7 +259,7 @@ class NostrService {
 //      );
 //    });
 //  }
-//  
+//
 //  async getListing(id) {
 //    for (const relayUrl of this.relayUrls) {
 //      const relay = await this.connect(relayUrl);
@@ -270,7 +270,7 @@ class NostrService {
 //    }
 //    return null;
 //  }
-//  
+//
 //  async fetchListing(relay, id) {
 //    return new Promise((resolve) => {
 //      relay.subscribe(
@@ -293,9 +293,8 @@ class NostrService {
 //      );
 //    });
 //  }
-//  
+//
 //}
-
 
 let EventParser = {
   getTagValue(event, tagName) {
@@ -304,6 +303,33 @@ let EventParser = {
   },
 
   parseListingData(event) {
+    let tags = {};
+    event.tags.forEach((tag) => {
+      if (
+        tag[0] !== "title" &&
+        tag[0] !== "summary" &&
+        tag[0] !== "price" &&
+        tag[0] !== "location" &&
+        tag[0] !== "shipping" &&
+        tag[0] !== "image" &&
+        tag[0] !== "published_at"
+      ) {
+        if (tags[tag[0]]) {
+          if (Array.isArray(tags[tag[0]])) {
+            tags[tag[0]].push(tag[1]);
+          } else {
+            tags[tag[0]] = [tags[tag[0]], tag[1]];
+          }
+        } else {
+          if (tag.length > 2) {
+            tags[tag[0]] = tag.slice(1);
+          } else {
+            tags[tag[0]] = tag[1];
+          }
+        }
+      }
+    });
+
     return {
       id: event.id,
       content: event.content,
@@ -321,6 +347,7 @@ let EventParser = {
       publishedAt: this.getTagValue(event, "published_at"),
       editedAt: event.created_at,
       pubkey: event.pubkey,
+      tags: tags,
     };
   },
 };

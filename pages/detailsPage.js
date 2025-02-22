@@ -55,6 +55,26 @@ async function detailsPageHandler() {
                 listing.shipping
               }</p>
               <p class="status"><strong>Status:</strong> ${listing.status}</p>
+              <div class="additional-tags">
+                <button class="toggle-button">Additional Tags</button>
+                <div class="collapsible-content">
+                  <ul>
+                    ${Object.entries(listing.tags)
+                      .map(
+                        ([key, value]) => `
+                      <li><strong>${key}:</strong>
+                        ${
+                          Array.isArray(value)
+                            ? value.map((item) => `(${item})`).join(" ")
+                            : `(${value})`
+                        }
+                      </li>
+                    `
+                      )
+                      .join("")}
+                  </ul>
+                </div>
+              </div>
               <p class="published"><strong>Published:</strong> ${formatDate(
                 listing.publishedAt
               )}</p>
@@ -94,6 +114,13 @@ function formatDate(timestamp) {
 
 function setupEventListeners(listing) {
   let npub = window.NostrTools.nip19.npubEncode(listing.pubkey);
+
+  document
+    .querySelector(".toggle-button")
+    .addEventListener("click", function () {
+      const content = this.nextElementSibling;
+      content.classList.toggle("expanded");
+    });
 
   let sellerProfileButton = document.querySelector(".seller-profile");
   let sellerListingsButton = document.querySelector(".seller-listings");

@@ -39,7 +39,6 @@ header {
   min-height: 4vh;
 }
 
-
 header > div {
   display: flex;
   flex-direction: row;
@@ -164,7 +163,7 @@ main {
 
 .main-content {
   flex: 5;
-  
+
   padding: 8px;
   margin: 2px;
   border: 1px solid var(--secondary);
@@ -221,8 +220,6 @@ hr.solid {
   margin-left: 2px;
   margin-right: 2px;
 }
-
-
 
 @media (max-width: 885px) {
   header {
@@ -592,6 +589,32 @@ hr.solid {
 .details-container .status {
   color: var(--primary);
   font-style: italic;
+}
+
+.collapsible-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+
+.toggle-button {
+  background-color: var(--background);
+  color: var(--text);
+  border: 1px solid var(--accent);
+  padding: 10px;
+  cursor: pointer;
+  width: 80%;
+  text-align: left;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.toggle-button:hover {
+  background-color: var(--secondary);
+}
+
+.collapsible-content.expanded {
+  max-height: fit-content;
 }
 
 /************************************************/
