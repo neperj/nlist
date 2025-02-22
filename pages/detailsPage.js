@@ -55,26 +55,43 @@ async function detailsPageHandler() {
                 listing.shipping
               }</p>
               <p class="status"><strong>Status:</strong> ${listing.status}</p>
-              <div class="additional-tags">
-                <button class="toggle-button">Additional Tags</button>
-                <div class="collapsible-content">
-                  <ul>
-                    ${Object.entries(listing.tags)
-                      .map(
-                        ([key, value]) => `
-                      <li><strong>${key}:</strong>
-                        ${
-                          Array.isArray(value)
-                            ? value.map((item) => `(${item})`).join(" ")
-                            : `(${value})`
-                        }
-                      </li>
-                    `
-                      )
-                      .join("")}
-                  </ul>
-                </div>
-              </div>
+<div class="additional-tags">
+  <button class="toggle-button">Additional Tags</button>
+  <div class="collapsible-content">
+    <ul>
+      ${Object.entries(listing.tags).map(([key, value]) => {
+        if (key === 'size') {
+          // Special handling for size tags
+          return `
+            <li>
+              <strong>${key}:</strong> 
+              ${Array.isArray(value) ? 
+                value.map((v, i, arr) => {
+                  if (i % 2 === 0 && i + 1 < arr.length) {
+                    return `<span class="tag-value">(${v}: ${arr[i + 1]})</span>`;
+                  }
+                  return '';
+                }).join(' ')
+                : `<span class="tag-value">(${value})</span>`
+              }
+            </li>`;
+        } else if (Array.isArray(value)) {
+          return `
+            <li>
+              <strong>${key}:</strong> 
+              ${value.map(v => `<span class="tag-value">(${v})</span>`).join(' ')}
+            </li>`;
+        } else {
+          return `
+            <li>
+              <strong>${key}:</strong> 
+              <span class="tag-value">(${value})</span>
+            </li>`;
+        }
+      }).join('')}
+    </ul>
+  </div>
+</div>
               <p class="published"><strong>Published:</strong> ${formatDate(
                 listing.publishedAt
               )}</p>

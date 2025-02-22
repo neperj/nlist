@@ -590,7 +590,7 @@ hr.solid {
   color: var(--primary);
   font-style: italic;
 }
-
+/*
 .collapsible-content {
   max-height: 0;
   overflow: hidden;
@@ -616,7 +616,35 @@ hr.solid {
 .collapsible-content.expanded {
   max-height: fit-content;
 }
+*/
+.additional-tags .tag-value {
+  background: var(--background);
+  padding: 2px 8px;
+  border-radius: 12px;
+  margin: 0 4px;
+  display: inline-block;
+}
 
+.additional-tags ul {
+  list-style: none;
+  padding: 0;
+}
+
+.additional-tags li {
+  margin: 8px 0;
+}
+
+.collapsible-content {
+  display: none;
+  padding: 10px;
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  margin-top: 8px;
+}
+
+.collapsible-content.expanded {
+  display: block;
+}
 /************************************************/
 /******************ProfilePage******************/
 /************************************************/

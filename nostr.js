@@ -305,30 +305,38 @@ let EventParser = {
   parseListingData(event) {
     let tags = {};
     event.tags.forEach((tag) => {
-      if (
-        tag[0] !== "title" &&
-        tag[0] !== "summary" &&
-        tag[0] !== "price" &&
-        tag[0] !== "location" &&
-        tag[0] !== "shipping" &&
-        tag[0] !== "image" &&
-        tag[0] !== "published_at"
-      ) {
-        if (tags[tag[0]]) {
-          if (Array.isArray(tags[tag[0]])) {
-            tags[tag[0]].push(tag[1]);
-          } else {
-            tags[tag[0]] = [tags[tag[0]], tag[1]];
-          }
-        } else {
-          if (tag.length > 2) {
-            tags[tag[0]] = tag.slice(1);
-          } else {
-            tags[tag[0]] = tag[1];
-          }
+      const [key, ...values] = tag;
+      
+      // Skip specific tags that are handled separately
+      if (['title', 'summary', 'price', 'location', 'shipping', 'image', 'published_at'].includes(key)) {
+        return;
+      }
+      
+      // Special handling for size tags
+      if (key === 'size') {
+        if (!tags[key]) {
+          tags[key] = [];
         }
+        // Add size and quantity together
+        tags[key].push(values[0], values[1]);
+        return;
+      }
+      
+      // Handle other tags as before
+      if (tags[key]) {
+        if (!Array.isArray(tags[key])) {
+          tags[key] = [tags[key]];
+        }
+        values.forEach(value => {
+          if (!tags[key].includes(value)) {
+            tags[key].push(value);
+          }
+        });
+      } else {
+        tags[key] = values.length > 1 ? values : values[0];
       }
     });
+    
 
     return {
       id: event.id,
