@@ -322,7 +322,6 @@ let EventParser = {
         return;
       }
       
-      // Handle other tags as before
       if (tags[key]) {
         if (!Array.isArray(tags[key])) {
           tags[key] = [tags[key]];

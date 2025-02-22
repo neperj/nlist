@@ -613,9 +613,7 @@ hr.solid {
   background-color: var(--secondary);
 }
 
-.collapsible-content.expanded {
-  max-height: fit-content;
-}
+
 */
 .additional-tags .tag-value {
   background: var(--background);
@@ -623,6 +621,22 @@ hr.solid {
   border-radius: 12px;
   margin: 0 4px;
   display: inline-block;
+}
+
+.toggle-button {
+  background-color: var(--background);
+  color: var(--text);
+  border: 1px solid var(--accent);
+  padding: 10px;
+  cursor: pointer;
+  width: 80%;
+  text-align: left;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.toggle-button:hover {
+  background-color: var(--secondary);
 }
 
 .additional-tags ul {
